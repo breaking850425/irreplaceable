@@ -1,0 +1,29 @@
+﻿<div class="row">
+    <div class="col-md-12 text-center">
+        <div class="site-block-27">
+            <ul>
+                @if (ShopService.Page > 1)
+                {
+                    <li><a href="@Url.Action("Index" , "Shop" , new { Page = -1})">&lt;</a></li>
+                }
+                @{
+                    for (int i = ShopService.PageStart; i <= ShopService.PageEnd; i++)
+                    {
+                        if (ShopService.Page == i)
+                        {
+                            <li class="active"><span>@i</span></li>
+}
+                        else
+                        {
+                            <li><a href="@Url.Action("Index" , "Shop" , new { Page = i})">@i</a></li>
+ }
+                    }
+                }
+                @if (ShopService.Page < ShopService.Pages)
+                {
+                    <li><a href="@Url.Action("Index" , "Shop" , new { Page = -2})">&gt;</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

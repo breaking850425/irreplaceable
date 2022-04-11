@@ -1,0 +1,129 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<irreplaceable.Models.Modules>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript">
+    function selects(value) {
+        var ele = document.getElementsByName('item.is_enabled');
+        for (var i = 0; i < ele.length; i++) {
+            if (ele[i].type == 'checkbox')
+                ele[i].checked = value;
+        }
+    }
+</script>
+
+<div class="row pt-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body data-list">
+                <div class="mb-2">
+                    @using (Html.BeginForm("Search", "Module", FormMethod.Post))
+                    {
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="control-label">查詢：</span>
+                                </td>
+                                <td class="pr-2">
+                                    <input id="search_text" name="search_text" type="text" class="form-control data-list-search-text" placeholder="請輸入要查詢的內容!!" />
+                                </td>
+                                <td>
+                                    <input type="submit" value="查詢" class="btn btn-primary" />
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+                @using (Html.BeginForm())
+                {
+                    <table class="table">
+                        <tr>
+                            <td colspan="6">
+                                <input type="button" class="btn btn-info" onclick='selects(true)' value="全選" />
+                                <input type="button" class="btn btn-info" onclick='selects(false)' value="不選" />
+                                <input type="submit" value="存檔" class="btn btn-primary" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.ActionLink("新增", "Add", "Module", new { Area = "" }, new { @class = "btn btn-primary" })
+                            </th>
+                            <th>
+                                <a href="@Url.Action("ColumnSort", new { id = "is_enabled" })">
+                                    @Html.DisplayNameFor(model => model.is_enabled)
+                                </a>
+                                @SessionService.GetColumnSortIcon(0, "is_enabled")
+                            </th>
+                            <th>
+                                <a href="@Url.Action("ColumnSort", new { id = "module_no" })">
+                                    @Html.DisplayNameFor(model => model.module_no)
+                                </a>
+                                @SessionService.GetColumnSortIcon(0, "module_no")
+                            </th>
+                            <th>
+                                <a href="@Url.Action("ColumnSort", new { id = "module_name" })">
+                                    @Html.DisplayNameFor(model => model.module_name)
+                                </a>
+                                @SessionService.GetColumnSortIcon(0, "module_name")
+                            </th>
+                            <th>
+                                <a href="@Url.Action("ColumnSort", new { id = "icon_name" })">
+                                    @Html.DisplayNameFor(model => model.icon_name)
+                                </a>
+                                @SessionService.GetColumnSortIcon(0, "icon_name")
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.remark)
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            @Html.HiddenFor(modelItem => item.rowid)
+                            @Html.HiddenFor(modelItem => item.module_no)
+                            <tr>
+                                <td>
+                                    @Html.ActionLink("修改", "Edit", "Module", new { id = item.rowid }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("刪除", "Delete", "Module", new { id = item.rowid }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?');" })
+                                </td>
+                                <td>
+                                    @Html.EditorFor(modelItem => item.is_enabled, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.module_no)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.module_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.icon_name)
+                                </td>
+                                <td class="data-list-max">
+                                    @Html.DisplayFor(modelItem => item.remark)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+            </div>
+            <div class="card-footer">
+                <table>
+                    <tr>
+                        <td class="pr-2">
+                            <span class="control-label">
+                                @SessionService.GetPageInfo(0)
+                            </span>
+                        </td>
+                        <td>@Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", new { page = x }))</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

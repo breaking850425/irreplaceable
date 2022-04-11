@@ -1,0 +1,29 @@
+﻿@model vmAccountProfile
+
+@{
+    ViewBag.Title = "AccountProfile";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<table class="account-profile-table">
+    <tr>
+        <td class="account-profile-box account-profile-box-image">
+            <img class="account-profile-image" src="@Url.Content(SessionService.AccountImage)" alt="無相片" />
+        </td>
+        <td class="account-profile-box pl-5">
+            @{
+                if (SessionService.RoleNo == "Admin")
+                {@Html.Partial(@"~\Views\Account\_Partial_AccountProfile_admin.cshtml")};
+            if (SessionService.RoleNo == "User")
+            {@Html.Partial(@"~\Views\Account\_Partial_AccountProfile_user.cshtml")};
+        if (SessionService.RoleNo == "Member")
+        {@Html.Partial(@"~\Views\Account\_Partial_AccountProfile_member.cshtml")};
+            }
+        </td>
+    </tr>
+</table>
+<hr />
+<div class="account-profile-button">
+    @Html.ActionLink("修改資料", "ProfileEdit", "Account", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("上傳圖像", "ProfileUpload", "Account", null, new { @class = "btn btn-success" })
+</div>

@@ -1,0 +1,156 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ include file="Imports.include.t4" #>
+@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<#= "<" + ViewDataTypeName + ">" #>
+<#
+// The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
+if(IsPartialView) {
+#>
+
+<#
+} else if(IsLayoutPageSelected) {
+#>
+
+@{
+    ViewBag.Title = "<#= ViewName#>";
+<#
+if (!String.IsNullOrEmpty(LayoutPageFile)) {
+#>
+    Layout = "<#= LayoutPageFile#>";
+<#
+}
+#>
+}
+<#
+} else {
+#>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title><#= ViewName #></title>
+</head>
+<body>
+<#
+    PushIndent("    ");
+}
+#>
+<div class="row pt-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body data-list">
+                <div class="mb-2">
+                    @using (Html.BeginForm("Search", "<#= ViewDataTypeShortName #>", FormMethod.Post))
+                    {
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="control-label">查詢：</span>
+                                </td>
+                                <td class="pr-2">
+                                    <input id="search_text" name="search_text" type="text" class="form-control data-list-search-text" placeholder="請輸入要查詢的內容!!" />
+                                </td>
+                                <td>
+                                    <input type="submit" value="查詢" class="btn btn-primary" />
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("新增", "Create", "<#= ViewDataTypeShortName #>", new { Area = "" }, new { @class = "btn btn-primary" })
+        </th>
+<#
+string pkName = GetPrimaryKeyName();
+
+IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
+foreach (PropertyMetadata property in properties) {
+    if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+#>
+<#
+        // We do not want to show any association properties for which there is
+        // no associated foreign key.
+        if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+            continue;
+        }
+#>
+        <th>
+            <a href="@Url.Action("ColumnSort" , new { id = "<#= GetValueExpression(property) #>"})">
+                @Html.DisplayNameFor(model => model.<#= GetValueExpression(property) #>)
+            </a>
+            @SessionService.GetColumnSortIcon(0, "<#= GetValueExpression(property) #>")
+        </th>
+<#
+    }
+}
+#>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="data-list-max">
+            @Html.ActionLink("修改", "Edit", "<#= ViewDataTypeShortName #>", new { id = item.<#= pkName #> }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("刪除", "Delete", "<#= ViewDataTypeShortName #>", new { id = item.<#= pkName #> }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?');" })
+        </td>
+<#
+foreach (PropertyMetadata property in properties) {
+    if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+#>
+<#
+        // We do not want to show any association properties for which there is
+        // no associated foreign key.
+        if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+            continue;
+        }
+#>
+        <td>
+            @Html.DisplayFor(modelItem => <#= "item." + GetValueExpression(property) #>)
+        </td>
+<#
+    }
+}
+
+#>
+    </tr>
+}
+
+</table>
+</div>
+            <div class="card-footer">
+                <table>
+                    <tr>
+                        <td class="pr-2">
+                            <span class="control-label">
+                                @SessionService.GetPageInfo(0)
+                            </span>
+                        </td>
+                        <td>@Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", new { page = x }))</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<#
+// The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
+#>
+<#
+if(!IsPartialView && !IsLayoutPageSelected) {
+    ClearIndent();
+#>
+</body>
+</html>
+<#
+}
+#>
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>

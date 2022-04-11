@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    @RenderSection("title", required: false)
+    <title>@SessionService.CompName</title>
+    <link rel="icon" href="@Url.Content("~/Images/WebSiteImg/icon.png")" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700" />
+    <link rel="stylesheet" href="@Url.Content("~/shoppers/fonts/icomoon/style.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/shoppers/css/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/shoppers/css/magnific-popup.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/shoppers/css/jquery-ui.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/shoppers/css/owl.carousel.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/shoppers/css/owl.theme.default.min.css")" />
+    @*<link rel="stylesheet" href="@Url.Content("~/shoppers/css/aos.css")">*@
+    <link rel="stylesheet" href="@Url.Content("~/shoppers/css/style.css")" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/themes/base/datepicker.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/datepicker.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/easion/css/easion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" />
+    <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600|Open+Sans:400,600,700" rel="stylesheet" />
+
+
+    <script src="@Url.Content("~/shoppers/js/jquery-3.3.1.min.js")"></script>
+    <script src="@Url.Content("~/shoppers/js/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/shoppers/js/popper.min.js")"></script>
+    <script src="@Url.Content("~/shoppers/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/shoppers/js/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/shoppers/js/jquery.magnific-popup.min.js")"></script>
+    @*<script src="@Url.Content("~/shoppers/js/aos.js")"></script>*@
+    <script src="@Url.Content("~/shoppers/js/main.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.13.0.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/datepicker-zh-TW.js")"></script>
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ulg/popper.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment-with-locales.min.js")"></script>
+    <script src="@Url.Content("~/easion/js/easion.js")"></script>
+    <script src="@Url.Content("~/Scripts/Chart.min.js")"></script>
+    <script src="@Url.Content("~/easion/js/chart-js-config.js")"></script>
+    @RenderSection("styles", required: false)
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+            $(window).scroll(function () {
+                var tt = $(this).scrollTop();
+                //alert(tt)
+                if (tt >= 50) {
+                    $("#myNav").addClass('bg-change').removeClass('bg-base');
+                } else {
+                    $("#myNav").removeClass('bg-change').addClass('bg-base');
+                }
+            })
+
+
+
+            //gotop
+            $("#goTop").click(function () {
+                $("body,html").animate({ scrollTop: $("#bodytop").offset().top }, 800)
+            })
+
+
+            $("#goTop").css({ "opacity": "0", "visibility": "hidden" })
+            var dw = $(window).width()
+            var dh = $(window).height() / 3
+            // alert(dw)
+            // alert(dh)
+
+
+            $(window).scroll(function () {
+                var wh = $(this).scrollTop()
+                if (wh > dh) {
+                    $("#goTop").css({ "opacity": "0.35", "visibility": "visible" })
+                    $("#goTop").hover(function () {
+                        $(this).css({ "cursor": "pointer", "opacity": "1" })
+                    }, function () {
+                        $(this).css("opacity", "0.35")
+                    })
+                } else {
+                    $("#goTop").css({ "opacity": "0", "visibility": "hidden" })
+                }
+            })
+
+
+        })
+
+                                    //$(document).ready(() => {
+                                    //    //滾動事件
+                                    //    $(document).scroll(() => {
+
+                                    //        let topNav = $('#myNav').offset().top;
+                                    //        let top01 = $('#area01').offset().top;
+
+                                    //        if (topNav < top01) { //當 nav 滾到 area01 的區域內
+                                    //            $('#myNav').addClass('bg-alpha').removeClass('bg-base');
+                                    //        } else {
+                                    //            $('#myNav').addClass('bg-base').removeClass('bg-alpha');
+                                    //        }
+
+                                    //    });
+                                    //});
+
+    </script>
+
+
+</head>
+<body style="background-color:white;" id="bodytop">
+
+    <div class="site-wrap ">
+        <header class="site-navbar navbar-fixed-top bg-base" role="banner" id="myNav">
+            <div class="site-navbar-top">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <div class="col-8 mb-3 mb-lg-0 col-lg-2 order-1 order-lg-0 text-center text-lg-left ">
+                            <div class="">
+                                <a href="@Url.Action("Index","Home")" class="js-logo-clone">
+                                    <img src="@Url.Content("~/Images/WebSiteImg/webLOGO.png")" alt="Irreplaceable Handmade" width="180" />
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="container col-lg-7  order-lg-1 order-3 p-0 m-0">
+                            <nav class="site-navigation text-center " role="navigation">
+                                <ul class="site-menu js-clone-nav d-none d-lg-block p-0 m-0">
+                                    <li >
+                                        <span class="d-lg-none" style="visibility:hidden;">**</span>
+                                        <a href="@Url.Action("Index","Home")">Home </a>
+                                    </li>
+                                    <li >
+                                        <span class="d-lg-none" style="visibility:hidden;">**</span>
+                                        <a href="@Url.Action("About","Home")">About</a>
+                                    </li>
+                                    <li class="has-children">
+                                        <span class="d-lg-none" style="visibility:hidden;">**</span>
+                                        <a href="@Url.Action("Category" , "Shop" , new { id = ""})">Shop</a>
+                                        <ul class="d-lg-none dropdown">
+                                            <li><a href="@Url.Action("Category" , "Shop" , new { id = ""})">All Products</a></li>
+                                            <li><a href="@Url.Action("Category" , "Shop" , new { id = "Hair Clip"})">Hair Clip</a></li>
+                                            <li><a href="@Url.Action("Category" , "Shop" , new { id = "Hair Tie"})">Hair Tie</a></li>
+                                            <li><a href="@Url.Action("Category" , "Shop" , new { id = "Earring"})">Earring</a></li>
+                                            <li><a href="@Url.Action("Category" , "Shop" , new { id = "Ring"})">Ring</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span class="d-lg-none" style="visibility:hidden;">**</span>
+                                        <a href="@Url.Action("Notice","Home")">Notice</a>
+                                    </li>
+                                    <li>
+                                        <span class="d-lg-none" style="visibility:hidden;">**</span>
+                                        <a href="@Url.Action("FAQ","Home")">FAQ</a>
+                                    </li>
+                                    <li class="active">
+                                        
+                                        @{if (SessionService.IsLogined)
+                                            { <a href="@Url.Action("LoginOutToHome","Account")">登出</a>}
+                                            else
+                                            { <a href="@Url.Action("Register","Account")">* 會員註冊</a>} }
+
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class=" col-2 col-lg-3 order-lg-3 order-2  p-lg-0  mt-lg-5" style="display: block; white-space: nowrap;" align="right">
+
+                            <div class="row m-0">
+                                <div class="col-lg-8 p-0">
+                                    <div class="d-none d-lg-block site-search-icon pr-lg-3">
+                                        @using (Html.BeginForm("Search", "Shop", FormMethod.Post, new { @class = "site-block-top-search" }))
+                                        {
+                            <span class="icon icon-search2"></span>
+                                            <input type="text" name="SearchText" id="SearchText" class="form-control border-0" placeholder="Search" style="border-radius:10px;">}
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2  p-0">
+                                    <div class=" d-lg-block d-none text-center site-login-icon">
+                                        @{if (SessionService.IsLogined)
+                                            {<a href="@Url.Action("Centre", "Members")" style="text-decoration: none;" id="linkani"><span class="icon icon-person" style="font-size: 27px;"></span><p id="textshow">我的帳號</p></a>}
+                                            else
+                                            {<a href="@Url.Action("Login", "Account")" style="text-decoration: none;" id="linkani"><span class="icon icon-person" style="font-size: 27px;"></span><p id="textshow">登入</p></a>} }
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-12  p-0">
+                                    <div class=" d-block">
+                                        <a href="@Url.Action("Cart" , "Shop")" class="site-cart" style="text-decoration: none;" id="linkani">
+                                            <div>
+                                                <span class="icon icon-shopping_cart" style="font-size:27px;"></span>
+                                                <span class="count text-white text-center" style="display: inline-block; background: #3e546e; width: 15px; height: 15px; border-radius: 7.5px;">@CartService.Counts</span>
+                                            </div>
+                                            <p id="textshow">購物車</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-2 order-0  d-lg-none">
+                            <div class="p-0 mb-5" style="display: inline-block;">
+                                <div class="d-inline-block   ml-lg-0 p-0 m-0">
+                                    <a href="#" class="site-menu-toggle js-menu-toggle" style="text-decoration: none;"><span class="icon-menu" style="font-size: 27px;"></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+                @RenderBody()
+
+    <footer class="site-footer border-top" style="background-color:#c5d6e2">
+        <div class="fixed-bottom text-right ">
+            <div class=" mr-5 mb-5" id="goTop" style="visibility:hidden; width:60px; float:right;">
+                <img src="@Url.Content("~/Images/WebSiteImg/arrow.png")" />
+                <p class="topText" style="margin-right: 13px; margin-top: -10px;">Top</p>
+            </div>
+        </div>
+        <div class="container-fluid text-center">
+            <div class="row">
+                <div class="col footer_slogan">
+                    <span>@SessionService.WebSiteSologan</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col footer_menu">
+                    <ul class="p-0 m-0">
+                        <li>-<a href="@Url.Action("About","Home")">關於我們</a></li>
+                        <li>-<a href="@Url.Action("Notice","Home")">購物須知</a></li>
+                        <li>-<a href="@Url.Action("FAQ","Home")">常見問題</a></li>
+                        <li>-<a href="@Url.Action("Terms","Home")">售後服務</a></li>
+                        <li>-<a href="@Url.Action("Privacy","Home")">隱私保護</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row footer_content">
+                <div class="col footer_text" align="left">
+                    <p>
+                        <img src="https://i.imgur.com/iKg9Vyi.png" alt="Irreplaceable_email" width="15" /> &ensp;
+                        <a href="mailto:@SessionService.WebSiteEmail?subject= @SessionService.CompName- 客戶提問">
+                            @SessionService.WebSiteEmail
+                        </a>
+
+                    </p>
+                    <p>
+                        @SessionService.WebSiteOpen
+                    </p>
+                </div>
+
+                <div class="col footer_logo">
+                    <p class="d-md-inline-block" style="font-size: 10px; color: #57778f;"><span class="d-none d-md-inline-block">/&ensp;Follow Us &ensp; /</span></p>
+                    <a href="@SessionService.WebSiteFBUrl" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="@SessionService.WebSiteIGUrl" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="@SessionService.WebSiteTwitterUrl" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col footer_copyright">
+                    © @SessionService.CopyRight @SessionService.CompName All Rights Reserved
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+</body>
+</html>
+
+
+@*<div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="footer-heading mb-4">Navigations</h3>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <ul class="list-unstyled">
+                        <li><a href="#">Sell online</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Shopping cart</a></li>
+                        <li><a href="#">Store builder</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <ul class="list-unstyled">
+                        <li><a href="#">Mobile commerce</a></li>
+                        <li><a href="#">Dropshipping</a></li>
+                        <li><a href="#">Website development</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <ul class="list-unstyled">
+                        <li><a href="#">Point of sale</a></li>
+                        <li><a href="#">Hardware</a></li>
+                        <li><a href="#">Software</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <h3 class="footer-heading mb-4">Promo</h3>
+            <a href="#" class="block-6">
+                <img src="@Url.Content("~/shoppers/images/hero_1.jpg")" alt="Image placeholder" class="img-fluid rounded mb-4">
+                <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
+                <p>Promo from  nuary 15 &mdash; 25, 2019</p>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="block-5 mb-5">
+                <h3 class="footer-heading mb-4">連絡資訊</h3>
+                <ul class="list-unstyled">
+                    <li class="address">address</li>
+                    <li class="phone">phone</li>
+                    <li class="email">email</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-5 mt-5 text-center">
+        <div class="col-md-12">
+            <p>
+                Copyright &copy; @DateTime.Today.Year 版權所有 - ShopName
+            </p>
+        </div>*@

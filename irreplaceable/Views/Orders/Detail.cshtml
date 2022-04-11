@@ -1,0 +1,211 @@
+﻿@model vmOrderDetail
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body data-list">
+        <div class="row">
+            <div class="col">
+                @Html.ActionLink("返回列表", "Index", "Orders", new { Area = "" }, new { @class = "btn btn-success" })
+            </div>
+        </div>
+        <hr />
+        <div class="row pt-3">
+            <div class="col-md-2">
+                <div class="form-header">
+                    @Html.DisplayNameFor(model => model.orders.order_no)：
+                </div>
+                <div class="form-data ">
+                    @Html.DisplayFor(model => model.orders.order_no)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.order_date)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.order_date)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.order_status)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.order_status)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.user_no)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.user_no)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.order_user_name)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.order_user_name)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.order_user_phone)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.order_user_phone)
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-5">
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.receive_name)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.receive_name)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.receive_phone)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.receive_phone)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.receive_address)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.receive_address)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.payment_name)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.payment_name)
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.shipping_name)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.shipping_name)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.remark)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.remark)
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.amounts)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.amounts)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.taxs)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.taxs)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" form-header">
+                    @Html.DisplayNameFor(model => model.orders.totals)：
+                </div>
+                <div class=" form-data">
+                    @Html.DisplayFor(model => model.orders.totals)
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.ActionLink("明細新增", "DetailCreate", "Orders", new { Area = "" }, new { @class = "btn btn-primary" })
+                        </th>
+                        <th >
+                           商品圖片
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ordersDetail.FirstOrDefault().order_no)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ordersDetail.FirstOrDefault().product_no)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ordersDetail.FirstOrDefault().product_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ordersDetail.FirstOrDefault().qty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ordersDetail.FirstOrDefault().price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ordersDetail.FirstOrDefault().amount)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.ordersDetail)
+                    {
+                <tr>
+                    <td>
+                        @Html.ActionLink("修改", "DetailEdit", "Orders", new { id = item.rowid }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("刪除", "DetailDelete", "Orders", new { id = item.rowid }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?');" })
+                    </td>
+                    <td>
+                        <img src="@Url.Content(ShopService.GetProductImageUrl(item.product_no))" alt="無封面圖" class="img-fluid" width="100">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.order_no)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product_no)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.qty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amount)
+                    </td>
+                </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

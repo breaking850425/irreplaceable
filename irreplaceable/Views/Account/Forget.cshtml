@@ -1,0 +1,56 @@
+﻿@model vmForget
+
+@{
+    ViewBag.Title = "Forget";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title {
+    <title>忘記密碼 - @SessionService.CompName</title>
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-screen-nominheight layoutbgmargin">
+        <div class="form-horizontal" style="width:100%;" align="center">
+            <div class="tab_css login-width ">
+                <div class="login-box " style="width:100%;">
+                    <div align="center" class="forgettop" style="width:100%;">忘記密碼 - 重新設定</div>
+                    <div class="forget_content">
+                        <div class="card card-outline">
+                            <div class="card-body">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div align="left" class="mb-3">請輸入註冊之電子信箱 <span style="color:red">*</span></div>
+                                <div class="input-group mb-3">
+                                    @Html.EditorFor(model => model.AccountEmail, new { htmlAttributes = new { @class = "form-control bor-radius", placeholder = "Email Address 電子信箱 (必填)", @id = "email" } })
+                                    <div class="input-group-append ">
+                                        <div class="input-group-text bor-radius" style="width:28px;">
+                                            <span class="fas fa-envelope"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.AccountEmail, "", new { @class = "text-danger" })
+                                </div>
+
+
+                                <div class="form-group ">
+                                    <div class="col-md-12">
+                                        <input type="submit" value="重設密碼" class="btn-login mt-2 py-1" />
+                                    </div>
+
+                                    <div class="col-md-12 mt-4" align="left">
+                                        @Html.ActionLink("會員登入", "Login", "Account", null, new { @class = " " })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

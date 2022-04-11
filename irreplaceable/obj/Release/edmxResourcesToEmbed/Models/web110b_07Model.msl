@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="web110b_07ModelStoreContainer" CdmEntityContainer="web110b_07Entities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="web110b_07Model.Admins">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+          <ScalarProperty Name="admin_email" ColumnName="admin_email" />
+          <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+          <ScalarProperty Name="admin_name" ColumnName="admin_name" />
+          <ScalarProperty Name="admin_no" ColumnName="admin_no" />
+          <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BigSales">
+      <EntityTypeMapping TypeName="web110b_07Model.BigSales">
+        <MappingFragment StoreEntitySet="BigSales">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="product_no" ColumnName="product_no" />
+          <ScalarProperty Name="sort_no" ColumnName="sort_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="web110b_07Model.Carts">
+        <MappingFragment StoreEntitySet="Carts">
+          <ScalarProperty Name="crete_time" ColumnName="crete_time" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="product_spec" ColumnName="product_spec" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_no" ColumnName="product_no" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="lot_no" ColumnName="lot_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrdersDetail">
+      <EntityTypeMapping TypeName="web110b_07Model.OrdersDetail">
+        <MappingFragment StoreEntitySet="OrdersDetail">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="product_spec" ColumnName="product_spec" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_no" ColumnName="product_no" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="vendor_no" ColumnName="vendor_no" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="web110b_07Model.Payments">
+        <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="pay_name" ColumnName="pay_name" />
+          <ScalarProperty Name="pay_no" ColumnName="pay_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductsCategorys">
+      <EntityTypeMapping TypeName="web110b_07Model.ProductsCategorys">
+        <MappingFragment StoreEntitySet="ProductsCategorys">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="category_no" ColumnName="category_no" />
+          <ScalarProperty Name="category_parent_no" ColumnName="category_parent_no" />
+          <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shippings">
+      <EntityTypeMapping TypeName="web110b_07Model.Shippings">
+        <MappingFragment StoreEntitySet="Shippings">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="ship_name" ColumnName="ship_name" />
+          <ScalarProperty Name="ship_no" ColumnName="ship_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="web110b_07Model.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+          <ScalarProperty Name="user_address" ColumnName="user_address" />
+          <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="in_date" ColumnName="in_date" />
+          <ScalarProperty Name="title_no" ColumnName="title_no" />
+          <ScalarProperty Name="department_no" ColumnName="department_no" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="web110b_07Model.Departments">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="department_name" ColumnName="department_name" />
+          <ScalarProperty Name="department_no" ColumnName="department_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Titles">
+      <EntityTypeMapping TypeName="web110b_07Model.Titles">
+        <MappingFragment StoreEntitySet="Titles">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="title_name" ColumnName="title_name" />
+          <ScalarProperty Name="title_no" ColumnName="title_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modules">
+      <EntityTypeMapping TypeName="web110b_07Model.Modules">
+        <MappingFragment StoreEntitySet="Modules">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="icon_name" ColumnName="icon_name" />
+          <ScalarProperty Name="module_name" ColumnName="module_name" />
+          <ScalarProperty Name="module_no" ColumnName="module_no" />
+          <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramTypes">
+      <EntityTypeMapping TypeName="web110b_07Model.ProgramTypes">
+        <MappingFragment StoreEntitySet="ProgramTypes">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="icon_name" ColumnName="icon_name" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="type_no" ColumnName="type_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Securitys">
+      <EntityTypeMapping TypeName="web110b_07Model.Securitys">
+        <MappingFragment StoreEntitySet="Securitys">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="is_undo" ColumnName="is_undo" />
+          <ScalarProperty Name="is_confirm" ColumnName="is_confirm" />
+          <ScalarProperty Name="is_download" ColumnName="is_download" />
+          <ScalarProperty Name="is_upload" ColumnName="is_upload" />
+          <ScalarProperty Name="is_print" ColumnName="is_print" />
+          <ScalarProperty Name="is_delete" ColumnName="is_delete" />
+          <ScalarProperty Name="is_edit" ColumnName="is_edit" />
+          <ScalarProperty Name="is_add" ColumnName="is_add" />
+          <ScalarProperty Name="program_no" ColumnName="program_no" />
+          <ScalarProperty Name="module_no" ColumnName="module_no" />
+          <ScalarProperty Name="account_no" ColumnName="account_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="web110b_07Model.Members">
+        <MappingFragment StoreEntitySet="Members">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+          <ScalarProperty Name="member_address" ColumnName="member_address" />
+          <ScalarProperty Name="member_zip" ColumnName="member_zip" />
+          <ScalarProperty Name="member_phone" ColumnName="member_phone" />
+          <ScalarProperty Name="member_email" ColumnName="member_email" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="gender_code" ColumnName="gender_code" />
+          <ScalarProperty Name="member_password" ColumnName="member_password" />
+          <ScalarProperty Name="member_name" ColumnName="member_name" />
+          <ScalarProperty Name="member_no" ColumnName="member_no" />
+          <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programs">
+      <EntityTypeMapping TypeName="web110b_07Model.Programs">
+        <MappingFragment StoreEntitySet="Programs">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="parameter_value" ColumnName="parameter_value" />
+          <ScalarProperty Name="action_name" ColumnName="action_name" />
+          <ScalarProperty Name="controller_name" ColumnName="controller_name" />
+          <ScalarProperty Name="area_name" ColumnName="area_name" />
+          <ScalarProperty Name="program_type_no" ColumnName="program_type_no" />
+          <ScalarProperty Name="program_name" ColumnName="program_name" />
+          <ScalarProperty Name="program_no" ColumnName="program_no" />
+          <ScalarProperty Name="module_no" ColumnName="module_no" />
+          <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="web110b_07Model.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="order_validate" ColumnName="order_validate" />
+          <ScalarProperty Name="order_closed" ColumnName="order_closed" />
+          <ScalarProperty Name="order_guid" ColumnName="order_guid" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="totals" ColumnName="totals" />
+          <ScalarProperty Name="taxs" ColumnName="taxs" />
+          <ScalarProperty Name="amounts" ColumnName="amounts" />
+          <ScalarProperty Name="receive_address" ColumnName="receive_address" />
+          <ScalarProperty Name="receive_email" ColumnName="receive_email" />
+          <ScalarProperty Name="receive_phone" ColumnName="receive_phone" />
+          <ScalarProperty Name="receive_name" ColumnName="receive_name" />
+          <ScalarProperty Name="shipping_no" ColumnName="shipping_no" />
+          <ScalarProperty Name="payment_no" ColumnName="payment_no" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderStatus">
+      <EntityTypeMapping TypeName="web110b_07Model.OrderStatus">
+        <MappingFragment StoreEntitySet="OrderStatus">
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+          <ScalarProperty Name="status_no" ColumnName="status_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="web110b_07Model.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="sold_qty" ColumnName="sold_qty" />
+          <ScalarProperty Name="detail_text" ColumnName="detail_text" />
+          <ScalarProperty Name="product_material" ColumnName="product_material" />
+          <ScalarProperty Name="product_length" ColumnName="product_length" />
+          <ScalarProperty Name="content_text" ColumnName="content_text" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="category_no" ColumnName="category_no" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_no" ColumnName="product_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "ProfileUpload";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("ProfileUploaded", "Account", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="file" name="file" id="file" class="form-control" />
+    <input type="submit" value="上傳檔案" class="btn btn-primary form-control" />
+}
+@Html.ActionLink("返回我的帳號", "AccountProfile", "Account", null, new { @class = "btn btn-success" })

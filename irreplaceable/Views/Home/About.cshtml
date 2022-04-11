@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_LayoutAbout.cshtml";
+}
+
+
+@section title {
+    <title>關於 - @SessionService.CompName</title>
+}
+
+<div class="about">
+    <div class="row">
+        <div class="col-12 col-md-6 aboutphoto">
+            <img src="@Url.Content("~/Images/WebSiteImg/aboutphoto.jpg")" alt="@SessionService.CompName" class="img-fluid" />
+        </div>
+        <div class="col-12 col-md-6 aboutcontent">
+            <div class="row">
+                <div class="col-12 abouttitle">
+                    <img src="@Url.Content("~/Images/WebSiteImg/about.png")" alt="@SessionService.CompName" />
+                </div>
+                <div class="col-12 mt-3">
+                    <p>
+                        Irreplaceable handmade since 2021<br />
+
+                        Create your own beautiful accessories.<br />
+
+                        It will become your irreplaceable symbol forever.<br />
+                    </p>
+                </div>
+                <div class="col-12 mt-5">
+
+                    <p>
+                        天然的乾燥花園中，<br />
+
+                        每一朵花都是妳/你與我之間無可取代的美麗象徵。<br />
+
+                        就算落地歸根，外型依舊優雅迷人。<br />
+
+                        不管在任何的喜、怒、哀、樂之下，<br />
+
+                        無可取代的手作會一直陪伴在妳/你身邊，並將最有溫度的飾品遞交到妳/你手上。
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Notice";
+    Layout = "~/Views/Shared/_LayoutNotice.cshtml";
+}
+
+@section title {
+    <title>購物須知 - @SessionService.CompName</title>
+}
+
+
+<div class="noticecontainer">
+
+    <div class="notice">
+        <div class="row">
+            <div class="col-12 mb-2 text-center">
+                <h2 style="font-size:2.5rem;">購物須知</h2>
+            </div>
+
+            <div class="col-12 mb-5">
+                <img src="~/Images/WebSiteImg/flowerline.png" alt="Alternate Text" class="img-fluid" />
+            </div>
+
+            <div class="col-12">
+                <div class="text">
+                    <h4><strong>✿ 注意事項</strong></h4>
+                    <ul>
+                        <li>商品皆使用真花製作，因此每朵花會有花瓣、大小、色澤不完全相同的情況，除了展現每樣飾品都是獨一無二、無可取代之外，也象徵了我們品牌的理念。</li>
+                        <li>每樣商品100%純手工製作，會與展示照有些微不同但不影響外觀與整體的呈現，完美主義者請勿購買。</li>
+                        <li>耳針未特別標示者材質皆為925純銀(非電鍍銀)，為抗過敏材質，但抗過敏程度依每人體質而有不同。</li>
+                        <li>商品屬接單製作，確認付款後，從開始製作到寄出商品約7-30個工作天（不含週休及國定例假日）。若是有急需可以來信或至FB、IG詢問。</li>
+                        <li>商品展示照皆為實品拍攝，因每台電腦、手機螢幕顯示的解析度不同，會有些微色差，已盡量拍攝實際商品顏色，請以商品實物為準。</li>
+                        <li>乾燥花的色澤會隨著時間流逝變深或變淺，屬於正常自然現象，無法接受者請勿購買。</li>
+                        <li>商品內會有些微氣泡屬正常現象。</li>
+                        <li>本店未提供換貨服務，僅提供退貨服務，詳情請參見<a href="@Url.Action("Terms","Home")">退貨須知</a></li>
+                        <li>任何惡意買家、賣家一律走法律途徑。</li>
+                    </ul>
+                    <br />
+                    <h4><strong>✿ 保養須知</strong></h4>
+                    <ul>
+                        <li>產品使用日本高級樹酯膠進行製作，質感輕透、不易泛黃，固化後的樹酯膠較為脆弱，請小心佩戴與使用。</li>
+                        <li>佩戴飾品時請勿接觸到含有化學成分之產品(EX：香水、乳液)，以避免飾品提早氧化。</li>
+                        <li>請於洗澡前卸下飾品，並將飾品放置於陰涼處，避免碰水與長期曝曬於太陽之下，此可延長產品外觀色澤與保存壽命。</li>
+                        <li>部分商品含鍍KC金材質，雖然有保色作用，但長期受到水份(汗水、香水、乳液)與空氣接觸，會有氧化現象均屬正常。</li>
+                        <li>請避免於攜帶安全帽時配戴飾品，此容易因擠壓而造成損毀。</li>
+                        <li>純銀耳針材質較軟，若有些微彎曲屬正常現象，只需輕微施力調整回來即可。</li>
+                        <li>925純銀耳針若未使用時，請收納於夾鏈袋避免長期接觸空氣造成氧化變黑、失去光澤，可使用拭銀布來回擦拭，或使用日常用潔白牙膏輕輕搓揉並用清水洗淨擦乾。</li>
+                    </ul>
+                    <div class="CustomPage-content" style="padding-left: 40px;">
+                        <div></div>
+                        <div><span style="color: #ff0000;">※以上須知購買即為同意</span></div>
+                    </div>
+                    <br />
+                    <hr />
+                    <br />
+                    <h4><strong>✿ 付款方式</strong></h4>
+                    <div>網路ATM轉帳、臨櫃匯款、無摺匯款、超商代碼繳費、超商條碼繳費、visa /Master/JCB線上刷卡服務</div>
+                    <br />
+                    <div>
+                        <h4><strong>✿ 運送方式</strong></h4>
+                        <div>中華郵政、7-11/全家/萊爾富取貨不付款</div>
+                        <div><span style="color: #808080;">(超商取貨請務必於訂購時填寫與身分證相符的姓名，並攜帶證件領取包裹，以免造成無法領取的情況發生)</span></div>
+                        <div>
+
+                            <span style="color: #ff0000; font-size: 10px;">＊因疫情關係，部分全家與7-11實施關閉措施，填寫門市前請確認收件門市是否營業，謝謝</span>
+
+                            <span style="color: #ff0000;"><a style="color: #ff0000; font-size: 10px;" href="https://famistore.famiport.com.tw/famistore/index.php?action=item_article&amp;wpicon_uid=5602403">全家門市暫停服務名單</a>  |  <a style="color: #ff0000; font-size: 10px;" href="https://myship.7-11.com.tw/MyShip/NewsList?area=%E4%BA%A4%E8%B2%A8%E4%BE%BF&amp;no=95">7-11門市調整營業時間名單</a></span>
+
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mt-5">
+                <img src="~/Images/WebSiteImg/flowerline.png" alt="Alternate Text"  class="img-fluid" />
+            </div>
+
+        </div>
+    </div>
+
+</div>

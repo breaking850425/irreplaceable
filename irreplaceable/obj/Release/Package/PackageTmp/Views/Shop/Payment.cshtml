@@ -1,0 +1,103 @@
+﻿@model vmOrders
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+}
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/dropdown-chosen.js")"></script>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-6 mb-5 mb-md-0">
+            <h2 class="h3 mb-3 text-black">帳單明細</h2>
+            <div class="p-3 p-lg-5 border">
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.receive_name, htmlAttributes: new { @class = "text-black" })
+                        @Html.EditorFor(model => model.receive_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.receive_name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.payment_no, htmlAttributes: new { @class = "text-black" })
+                        @Html.DropDownListFor(model => model.payment_no, new SelectList(Model.PaymentsList, "pay_no", "pay_name", Model.payment_no), new { @class = "form-control chosen-select" })
+                        @Html.ValidationMessageFor(model => model.payment_no, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.shipping_no, htmlAttributes: new { @class = "text-black" })
+                        @Html.DropDownListFor(model => model.shipping_no, new SelectList(Model.ShippingsList, "ship_no", "ship_name", Model.shipping_no), new { @class = "form-control chosen-select" })
+                        @Html.ValidationMessageFor(model => model.shipping_no, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.receive_email, htmlAttributes: new { @class = "text-black" })
+                        @Html.EditorFor(model => model.receive_email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.receive_email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.receive_phone, htmlAttributes: new { @class = "text-black" })
+                        @Html.EditorFor(model => model.receive_phone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.receive_phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.receive_address, htmlAttributes: new { @class = "text-black" })
+                        @Html.EditorFor(model => model.receive_address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.receive_address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.remark, htmlAttributes: new { @class = "text-black" })
+                    <textarea name="remark" id="remark" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <h2 class="h3 mb-3 text-black">訂購商品明細</h2>
+                    <div class="p-3 p-lg-5 border">
+                        <table class="table site-block-order-table mb-5">
+                            <tr>
+                                <td>商品名稱</td>
+                                <td>小計</td>
+                            </tr>
+                            @foreach (var item in Model.CartsList)
+                            {
+                                <tr>
+                                    <td>@item.product_name <strong class="mx-2">x</strong> @item.qty  </td>
+                                    <td>$@item.amount  </td>
+                                </tr>
+                            }
+                            <tr>
+                                <td class="text-black font-weight-bold"><strong>合計金額</strong></td>
+                                <td class="text-black font-weight-bold"><strong>$@CartService.Totals</strong></td>
+                            </tr>
+                        </table>
+                        <div class="form-group">
+                            <input type="submit" value="確定付款" class="btn btn-primary btn-lg py-3 btn-block" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,253 @@
+﻿
+
+
+
+@model vmGroupLoginRegister
+
+@{
+
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutRegister.cshtml";
+
+    var GenderCodeList = Model.GetGenderCodeList();
+
+}
+
+@section title {
+    <title>註冊 - @SessionService.CompName</title>
+}
+
+
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+    @*<script>
+            $(function () {
+                $('input').click(function () {
+                    var t = $(this).attr('id')
+                    $('#' + t + 'text').slideDown()
+                })
+
+                $('#gender').click(function () {
+                    $('#gendertext').slideDown()
+                })
+            })
+        </script>*@
+
+}
+
+
+<div class="form-screen-nominheight layoutbgmargin">
+    <div class="form-horizontal" style="width:100%;" align="center">
+        <div class="tab_css login-width">
+            <!-- TAB1 打包區塊 start -->
+            <input id="tab1" type="radio" name="tab" class="inputhidden" />
+            <label for="tab1" align="center" class="tablabel">Login</label>
+            <div class="tab_content">
+                @using (Html.BeginForm("Login", "Account"))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="login-box">
+                        <div class="card">
+                            <div class="card-body">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <figure>
+                                    <figcaption>會員帳號 <span style="color:red">*</span> </figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Login.AccountNo, new { htmlAttributes = new { @class = "form-control bor-radius ", placeholder = "Email Address 電子信箱 / Account No 會員編號", @id = "email" } })
+                                        <div class="input-group-append">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-envelope"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Login.AccountNo, "", new { @class = "text-danger" })
+                                </div>
+
+                                <figure>
+                                    <figcaption>會員密碼 <span style="color:red">*</span> </figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Login.Password, new { htmlAttributes = new { @class = "form-control bor-radius", placeholder = "Password 會員密碼", @id = "pwd" } })
+                                        <div class="input-group-append ">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-lock"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Login.Password, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group ">
+                                    <div class="col-md-12 mt-1" align="left">
+                                        @Html.ActionLink("忘記密碼", "Forget", "Account", null, new { @class = "" })&ensp;<span style="color:darkgray;">\</span>&ensp;
+                                        @Html.ActionLink("會員註冊", "Register", "Account", null, new { @class = "" })
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="submit" value="登入" class="btn-login mt-3 py-1" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- TAB2 打包區塊 start -->
+            <input id="tab2" type="radio" name="tab" class="inputhidden" checked />
+            <label for="tab2" align="center" class="tablabel">Register</label>
+            <div class="tab_content">
+
+
+                @using (Html.BeginForm("Register", "Account"))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="login-box">
+                        <div class="card">
+                            <div class="card-body">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <figure>
+                                    <figcaption>電子信箱 <span style="color:red">*</span> </figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Register.ContactEmail, new { htmlAttributes = new { @class = "form-control bor-radius", placeholder = "Email Address 電子信箱 (必填)", @id = "emailr" } })
+                                        <div class="input-group-append ">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-envelope"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Register.ContactEmail, "", new { @class = "text-danger" })
+                                </div>
+
+                                <figure>
+                                    <figcaption>會員密碼 <span style="color:red">*</span> </figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Register.Password, new { htmlAttributes = new { @class = "form-control bor-radius", placeholder = "Password 會員密碼 (必填，至少6碼)", @id = "pwdr" } })
+                                        <div class="input-group-append ">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-lock"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Register.Password, "", new { @class = "text-danger" })
+                                </div>
+
+                                <figure>
+                                    <figcaption>確認密碼 <span style="color:red">*</span> </figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Register.ConfirmPassword, new { htmlAttributes = new { @class = "form-control bor-radius", placeholder = "Password 確認密碼 (必填)", @id = "okpwd" } })
+                                        <div class="input-group-append ">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-lock"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Register.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+
+                                <figure>
+                                    <figcaption>會員姓名 <span style="color:red">*</span> </figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Register.AccountName, new { htmlAttributes = new { @class = "form-control bor-radius ", placeholder = "Username 會員姓名 (必填)", @id = "name" } })
+                                        <div class="input-group-append">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-user"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Register.AccountName, "", new { @class = "text-danger" })
+                                </div>
+
+                                <figure>
+                                    <figcaption>會員性別</figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.DropDownListFor(model => model.Register.GenderCode, GenderCodeList, new { @class = "form-control bor-radius", @id = "gender" })
+                                        <div class="input-group-append ">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-restroom"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Register.GenderCode, "", new { @class = "text-danger" })
+                                </div>
+
+                                <figure>
+                                    <figcaption>會員生日 <span style="color:red">*</span> </figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Register.Birthday, new { htmlAttributes = new { @class = "form-control datepicker bor-radius", placeholder = @DateTime.Now.ToString("yyyy-MM-dd"), @id = "birthday" } })
+                                        <div class="input-group-append ">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-calendar-alt"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Register.Birthday, "", new { @class = "text-danger" })
+                                </div>
+
+                                <figure>
+                                    <figcaption>會員電話</figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Register.ContactPhone, new { htmlAttributes = new { @class = "form-control bor-radius", placeholder = "Phone 聯絡電話", @id = "phone" } })
+                                        <div class="input-group-append ">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-phone"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Register.ContactPhone, "", new { @class = "text-danger" })
+                                </div>
+
+                                <figure>
+                                    <figcaption>會員地址</figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Register.ContactAddress, new { htmlAttributes = new { @class = "form-control bor-radius", placeholder = "Address 聯絡地址", @id = "address" } })
+                                        <div class="input-group-append ">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-map-marker-alt"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Register.ContactAddress, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group ">
+                                    <div class="col-md-12 mt-1" align="left">
+                                        @Html.ActionLink("會員登入", "Login", "Account", null, new { @class = "" })
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="submit" value="會員註冊" class="btn-login mt-3 py-1" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

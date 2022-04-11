@@ -1,0 +1,141 @@
+﻿@model irreplaceable.Models.Products
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+}
+
+<div class="detail">
+
+    <div class="col-12 path mb-3 ">
+        <a href="@Url.Action("Index" , "Home")">首頁</a>
+        <span class="mx-2 mb-0">/</span>
+        <a href="@Url.Action("Category" , "Shop", new { id = ""})">Shop</a>
+        @if (@ShopService.CategoryNo != "")
+
+        {
+            <span class="mx-2 mb-0">/</span>
+            <a href="@Url.Action("Category" , "Shop" , new { id = @ShopService.CategoryNo})">@ShopService.CategoryNo</a>
+            <span class="mx-2 mb-0">/</span>
+            <span class="text-black">@Model.product_name</span>
+        }
+        else
+        {
+            <span class="mx-2 mb-0">/</span>
+            <a href="@Url.Action("Category" , "Shop" , new { id = "All Products"})">All Products</a>
+            <span class="mx-2 mb-0">/</span>
+            <span class="text-black">@Model.product_name</span>
+
+        }
+    </div>
+
+
+    @using (Html.BeginForm("AddToCart", "Shop", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.product_no)
+        <div class="row " style="margin-bottom:50px;">
+            <div class="col-md-2 col-lg-1 thumbs order-1 order-md-0">
+                <img src="@Url.Content(ShopService.GetProductImageUrl(Model.product_no))" class="thumb" data-img="000" alt="" />
+                <img src="@Url.Content(ShopService.GetProductImage1Url(Model.product_no))" class="thumb" data-img="001" alt="" />
+                <img src="@Url.Content(ShopService.GetProductImage2Url(Model.product_no))" class="thumb" data-img="002" alt="" />
+                <img src="@Url.Content(ShopService.GetProductImage3Url(Model.product_no))" class="thumb" data-img="003" alt="" />
+                <img src="@Url.Content(ShopService.GetProductImage4Url(Model.product_no))" class="thumb" data-img="004" alt="" />
+                @*<img src="@Url.Content(ShopService.GetProductImage5Url(Model.product_no))" class="thumb" data-img="005" alt="" />*@
+            </div>
+            <div class="col-md-10 col-lg-5 order-0 order-md-1">
+                <img src="@Url.Content(ShopService.GetProductImageUrl(Model.product_no))" alt="Image" class="img-fluid" id="g">
+            </div>
+            <div class="col-lg-6 order-2 mt-5 mt-lg-0">
+                <h5 class="text-black">
+                    <span class="productname">@Model.product_name</span><br />
+
+                </h5>
+                <div class="col-12 ad1">
+                    全館消費滿1600，享免運優惠
+                </div>
+                <div class="col-12 ad2">
+                    追蹤<a href="https://www.instagram.com/irreplaceable.handmade/" target="_blank">Instagram</a>，並截圖私訊，可得100元折扣碼，每人限使用2次
+                </div>
+                <h5 class="price">
+                    <span>NT$ @Model.price</span>
+                  
+                </h5>
+
+                <h5 class="text-black content">
+                    <span><strong>尺寸大約：</strong>@Model.product_length </span><br />
+                    <span><strong>商品材質：</strong>@Model.product_material </span><br />
+                </h5>
+
+                <h5 class="text-black contentdescript">
+                    <span><strong>商品說明：</strong>@Model.detail_text </span><br />
+                </h5>
+
+                <div>
+                    <div class="row" style="padding:15px;">
+                        <div class="col-3  m-0 p-0">
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                </div>
+                                <input id="Quantity" name="Quantity" type="text" class="form-control text-center" value="1" placeholder="" aria-label="Price" aria-describedby="button-addon1">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-9 pr-0">
+                            <input type="submit" value="加入購物車" class="btn  btn-primary " />
+                        </div>
+                    </div>
+                </div>
+                <div align="right" class="pr-0" style="color:black">
+                    <a href="#" onclick="javascript:window.history.go(-1);" class="btn" style=" padding-right: 0; color: #588cab;">返回上一頁</a>
+                </div>
+
+                <div class="mt-5" align="right">
+
+                    <!-- AddToAny BEGIN -->
+                    <a class="a2a_dd" href="https://www.addtoany.com/share"><img src="https://static.addtoany.com/buttons/share_save_171_16.png" width="171" height="16" border="0" alt="Share"></a>
+                    <script async src="https://static.addtoany.com/menu/page.js"></script>
+                    <!-- AddToAny END -->
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+<script>
+    let thumb = document.querySelectorAll('.thumb');
+    thumb.forEach(function (item) {
+        //為每張縮圖加入監聽事件
+        item.addEventListener('click', function () {
+            //抓大圖片
+            let g = document.querySelector('#g');
+            //console.log(g);
+            console.log(this.getAttribute('src'));
+
+            g.setAttribute('src', this.getAttribute('src'));
+
+            //console.log(this.dataset.img);
+            //console.log(this.getAttribute('src'));
+
+            //console.log(t);
+            //console.log(t.getAttribute('src'));
+            //console.log(t.getAttribute('data-img'));
+        });
+    });
+</script>
+
+
+@*<hr />*@
+@*<div class="row">
+        <div class="col-md-12">
+            <h5>
+                詳細規格：
+            </h5>
+            @Model.detail_text
+        </div>
+    </div>*@
+
+

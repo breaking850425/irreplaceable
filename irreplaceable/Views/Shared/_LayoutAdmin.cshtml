@@ -1,0 +1,158 @@
+﻿@{
+    string str_header = "後台管理專區";
+    if (SessionService.RoleNo == "Member") { str_header = "會員專區"; }
+    if (SessionService.RoleNo == "Vendor") { str_header = "廠商專區"; }
+    if (SessionService.RoleNo == "Aadmin") { str_header = "後台管理專區"; }
+    if (SessionService.RoleNo == "User") { str_header = "使用者管理專區"; }
+    if (ViewBag.PanelWidth == null) { ViewBag.PanelWidth = "col-md-12"; }
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> 後台管理系統 - @SessionService.CompName</title>
+    <link rel="icon" href="@Url.Content("~/Images/WebSiteImg/icon.png")" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/themes/base/datepicker.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/datepicker.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/easion/css/easion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" />
+    <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600|Open+Sans:400,600,700" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.13.0.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/datepicker-zh-TW.js")"></script>
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/umd/popper.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment-with-locales.min.js")"></script>
+    <script src="@Url.Content("~/easion/js/easion.js")"></script>
+    <script src="@Url.Content("~/Scripts/Chart.min.js")"></script>
+    <script src="@Url.Content("~/easion/js/chart-js-config.js")"></script>
+    @RenderSection("styles", required: false)
+    @RenderSection("scripts", required: false)
+</head>
+
+<body>
+    <div class="dash">
+        <div class="dash-nav dash-nav-dark">
+            <div align="center" class="mt-5">
+                <a href="@Url.Action("Index" , "Admin" , new { Area = ""})">@SessionService.CompName</a>
+            </div>
+            <header>
+                <a href="#!" class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </a>
+                @Html.ActionLink(str_header, "Index", "Admin", new { Area = "" }, new { @class = "easion-logo side-logo" })
+            </header>
+
+
+            <nav class="dash-nav-list">
+                @{ foreach (var modules in AccountService.GetAccountModules())
+                    {
+                        <div class="dash-nav-dropdown">
+                            <a href="#" class="dash-nav-item dash-nav-dropdown-toggle">
+                                <i class="@modules.icon_name"></i>
+                                <span class="menu-module-text">@modules.module_name</span>
+                            </a>
+                            <div class="dash-nav-dropdown-menu">
+                                @foreach (var programs in AccountService.GetAccountPrograms(modules.module_no))
+                                {
+                                    <a href="@Url.Action("PrgOpen", "Admin", new { id = programs.program_no })" class="dash-nav-dropdown-item">
+                                        <i class="@programs.program_type_no p-2"></i>
+                                        <span class="menu-program-text">@programs.program_name</span>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    }
+                    <a href="@Url.Action("LoginOutToHome", "Account", new { Area = "" })" class="dash-nav-item">
+                        <i class="fas fa-sign-out-alt p-2"></i>
+                        <span class="menu-module-text">登出系統</span>
+                    </a>
+                }
+            </nav>
+        </div>
+
+
+
+        <div class="dash-app">
+            <header class="dash-toolbar">
+                <a href="#!" class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <h3>
+                    <span class="side-position">
+                        <a href="@Url.Action("Index" , "Admin" , new { Area = ""})">
+                            <i class="fas fa-home">首頁</i>
+                        </a>
+                    </span>
+                    <b>
+                        @if (SessionService.PrgName != "首頁")
+                        {<span>/ @SessionService.PrgInfo</span>}
+                    </b>
+                </h3>
+                <div class="tools">
+                    <table>
+                        <tr>
+                            <td>
+                                <img src="@Url.Content(SessionService.AccountImage)" class="user-logo-image" />
+                            </td>
+                            <td>
+                                <div class="dropdown tools-item">
+                                    <a href="#" class="" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <table>
+                                            <tr>
+                                                <td><span class="side-user">@SessionService.AccountNo</span><br /></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="side-user">@SessionService.AccountName</span></td>
+                                            </tr>
+                                        </table>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                                        <a class="dropdown-item" href="@Url.Action("AccountProfile", "Account", new { Area = "" })">我的帳號</a>
+                                        <a class="dropdown-item" href="@Url.Action("ResetPassword", "Account", new { Area = "" })">變更密碼</a>
+                                        <a class="dropdown-item" href="@Url.Action("LoginOutToHome", "Account", new { Area = "" })">登出系統</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </header>
+            <main class="dash-content">
+                <div class="container-fluid">
+                    <div class="row margin-top-panel justify-content-center">
+                        <div class="@ViewBag.PanelWidth ">
+                            <div class="panel panel-primary box-shadow">
+                                <div class="panel-heading">
+                                    <h4>
+                                        <span class="pull-left">
+                                            @{
+                                                if (!string.IsNullOrEmpty(SessionService.PrgNo) && !string.IsNullOrEmpty(SessionService.PrgIcon))
+                                                {
+                                                    <i class="@SessionService.PrgIcon"></i>
+                                                }
+                                            }
+                                            @SessionService.ActionInfo
+                                        </span>
+                                    </h4>
+                                </div>
+                                <div class="panel-body">
+                                    @RenderBody()
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

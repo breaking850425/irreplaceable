@@ -1,0 +1,184 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<irreplaceable.Models.Members>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript">
+    function selects(value) {
+        var ele = document.getElementsByName('item.is_validate');
+        for (var i = 0; i < ele.length; i++) {
+            if (ele[i].type == 'checkbox')
+                ele[i].checked = value;
+        }
+    }
+</script>
+
+<div class="row pt-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body data-list">
+                <div class="mb-2">
+                    @using (Html.BeginForm("Search", "Members", FormMethod.Post))
+                    {
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="control-label">查詢：</span>
+                                </td>
+                                <td class="pr-2">
+                                    <input id="search_text" name="search_text" type="text" class="form-control data-list-search-text" placeholder="請輸入要查詢的內容!!" />
+                                </td>
+                                <td>
+                                    <input type="submit" value="查詢" class="btn btn-primary" />
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+                @using (Html.BeginForm())
+                {
+            <table class="table">
+                @*<tr>
+                    <td colspan="11">
+                        <input type="button" class="btn btn-info" onclick='selects(true)' value="全選" />
+                        <input type="button" class="btn btn-info" onclick='selects(false)' value="不選" />
+                        <input type="submit" value="存檔" class="btn btn-primary" />
+                    </td>
+                </tr>*@
+
+                <tr>
+                    <th>
+                        @Html.ActionLink("新增", "Create", "Members", new { Area = "" }, new { @class = "btn btn-primary" })
+                    </th>
+                    <th>
+                        <a href="@Url.Action("ColumnSort" , new { id = "is_validate"})">
+                            @Html.DisplayNameFor(model => model.is_validate)
+                        </a>
+                        @SessionService.GetColumnSortIcon(0, "is_validate")
+                    </th>
+                    <th>
+                        <a href="@Url.Action("ColumnSort" , new { id = "member_no"})">
+                            @Html.DisplayNameFor(model => model.member_no)
+                        </a>
+                        @SessionService.GetColumnSortIcon(0, "member_no")
+                    </th>
+                    <th>
+                        <a href="@Url.Action("ColumnSort" , new { id = "member_name"})">
+                            @Html.DisplayNameFor(model => model.member_name)
+                        </a>
+                        @SessionService.GetColumnSortIcon(0, "member_name")
+                    </th>
+                    <th>
+                        <a href="@Url.Action("ColumnSort" , new { id = "member_email"})">
+                            @Html.DisplayNameFor(model => model.member_email)
+                        </a>
+                        @SessionService.GetColumnSortIcon(0, "member_email")
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.member_password)
+                    </th>*@
+                    <th>
+                        <a href="@Url.Action("ColumnSort" , new { id = "gender_code"})">
+                            @Html.DisplayNameFor(model => model.gender_code)
+                        </a>
+                        @SessionService.GetColumnSortIcon(0, "gender_code")
+                    </th>
+                    <th>
+                        <a href="@Url.Action("ColumnSort" , new { id = "birth_date"})">
+                            @Html.DisplayNameFor(model => model.birth_date)
+                        </a>
+                        @SessionService.GetColumnSortIcon(0, "birth_date")
+                    </th>
+
+                    <th>
+                        <a href="@Url.Action("ColumnSort" , new { id = "member_phone"})">
+                            @Html.DisplayNameFor(model => model.member_phone)
+                        </a>
+                        @SessionService.GetColumnSortIcon(0, "member_phone")
+                    </th>
+                    <th>
+                        <a href="@Url.Action("ColumnSort" , new { id = "member_zip"})">
+                            @Html.DisplayNameFor(model => model.member_zip)
+                        </a>
+                        @SessionService.GetColumnSortIcon(0, "member_zip")
+                    </th>
+                    <th>
+                        <a href="@Url.Action("ColumnSort" , new { id = "member_address"})">
+                            @Html.DisplayNameFor(model => model.member_address)
+                        </a>
+                        @SessionService.GetColumnSortIcon(0, "member_address")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.remark)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+
+                    @Html.HiddenFor(modelItem => item.rowid)
+                    @Html.HiddenFor(modelItem => item.member_no)
+                    <tr>
+                        <td>
+                            @Html.ActionLink("修改", "Edit", "Members", new { id = item.rowid }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("刪除", "Delete", "Members", new { id = item.rowid }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?');" })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.is_validate, new { htmlAttributes = new { @class = "form-control" } })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.member_no)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.member_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.member_email)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.member_password)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.gender_code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.birth_date)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.member_phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.member_zip)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.member_address)
+                        </td>
+                        <td class="data-list-max">
+                            @Html.DisplayFor(modelItem => item.remark)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+                }
+                </div>
+            <div class="card-footer">
+                <table>
+                    <tr>
+                        <td class="pr-2">
+                            <span class="control-label">
+                                @SessionService.GetPageInfo(0)
+                            </span>
+                        </td>
+                        <td>@Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", new { page = x }))</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

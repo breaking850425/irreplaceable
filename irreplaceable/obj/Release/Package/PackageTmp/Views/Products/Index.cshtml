@@ -1,0 +1,155 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<irreplaceable.Models.Products>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row pt-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body data-list">
+                <div class="mb-2">
+                    @using (Html.BeginForm("Search", "Products", FormMethod.Post))
+                    {
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="control-label">查詢：</span>
+                                </td>
+                                <td class="pr-2">
+                                    <input id="search_text" name="search_text" type="text" class="form-control data-list-search-text" placeholder="請輸入要查詢的內容!!" />
+                                </td>
+                                <td>
+                                    <input type="submit" value="查詢" class="btn btn-primary" />
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.ActionLink("新增", "Create", "Products", new { Area = "" }, new { @class = "btn btn-primary" })
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.product_img)
+                        </th>
+
+                        <th>
+                            <a href="@Url.Action("ColumnSort" , new { id = "product_no"})">
+                                @Html.DisplayNameFor(model => model.product_no)
+                            </a>
+                            @SessionService.GetColumnSortIcon(0, "product_no")
+                        </th>
+
+                        <th>
+                            <a href="@Url.Action("ColumnSort" , new { id = "product_name"})">
+                                @Html.DisplayNameFor(model => model.product_name)
+                            </a>
+                            @SessionService.GetColumnSortIcon(0, "product_name")
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ColumnSort" , new { id = "category_no"})">
+                                @Html.DisplayNameFor(model => model.category_no)
+                            </a>
+                            @SessionService.GetColumnSortIcon(0, "category_no")
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ColumnSort" , new { id = "product_length"})">
+                                @Html.DisplayNameFor(model => model.product_length)
+                            </a>
+                            @SessionService.GetColumnSortIcon(0, "product_length")
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ColumnSort" , new { id = "price"})">
+                                @Html.DisplayNameFor(model => model.price)
+                            </a>
+                            @SessionService.GetColumnSortIcon(0, "price")
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ColumnSort" , new { id = "content_text"})">
+                                @Html.DisplayNameFor(model => model.content_text)
+                            </a>
+                            @SessionService.GetColumnSortIcon(0, "content_text")
+                        </th>
+
+                        @* <th>
+            <a href="@Url.Action("ColumnSort" , new { id = "product_material"})">
+                @Html.DisplayNameFor(model => model.product_material)
+            </a>
+            @SessionService.GetColumnSortIcon(0, "product_material")
+        </th>
+         <th>
+                <a href="@Url.Action("ColumnSort" , new { id = "detail_text"})">
+                    @Html.DisplayNameFor(model => model.detail_text)
+                </a>
+                @SessionService.GetColumnSortIcon(0, "detail_text")
+            </th>*@
+                        <th>
+
+                            @Html.DisplayNameFor(model => model.remark)
+
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                <tr>
+                    <td>
+                        @Html.ActionLink("修改", "Edit", "Products", new { id = item.rowid }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("刪除", "Delete", "Products", new { id = item.rowid }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?');" })
+                    </td>
+                    <td>
+                        <img src="@Url.Content(ShopService.GetProductImageUrl(item.product_no))" alt="Image" class="img-fluid">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product_no)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.category_no)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product_length)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.content_text)
+                    </td>
+                    @*
+        <td>
+            @Html.DisplayFor(modelItem => item.product_material)
+        </td>
+         <td>
+                @Html.DisplayFor(modelItem => item.detail_text)
+            </td>*@
+                    <td class="data-list-max">
+                        @Html.DisplayFor(modelItem => item.remark)
+                    </td>
+                </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="card-footer">
+                <table>
+                    <tr>
+                        <td class="pr-2">
+                            <span class="control-label">
+                                @SessionService.GetPageInfo(0)
+                            </span>
+                        </td>
+                        <td>@Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", new { page = x }))</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

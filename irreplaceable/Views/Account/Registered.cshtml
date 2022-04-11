@@ -1,0 +1,105 @@
+﻿@model vmGroupLoginRegister
+
+@{
+    ViewBag.Title = "Registered";
+    Layout = "~/Views/Shared/_LayoutRegister.cshtml";
+}
+
+@section title {
+    <title>註冊 - @SessionService.CompName</title>
+}
+
+
+<div class="form-screen-nominheight layoutbgmargin">
+    <div class="form-horizontal" style="width:100%;" align="center">
+        <div class="tab_css login-width">
+            <!-- TAB1 打包區塊 start -->
+            <input id="tab1" type="radio" name="tab" class="inputhidden" />
+            <label for="tab1" align="center" class="tablabel">Login</label>
+            <div class="tab_content">
+                @using (Html.BeginForm("Login", "Account"))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="login-box">
+                        <div class="card">
+                            <div class="card-body">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <figure>
+                                    <figcaption>會員帳號 <span style="color:red">*</span> </figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Login.AccountNo, new { htmlAttributes = new { @class = "form-control bor-radius ", placeholder = "Email Address 電子信箱 / Account No 會員編號", @id = "email" } })
+                                        <div class="input-group-append">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-envelope"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Login.AccountNo, "", new { @class = "text-danger" })
+                                </div>
+
+                                <figure>
+                                    <figcaption>會員密碼 <span style="color:red">*</span> </figcaption>
+                                    <div class="input-group mb-3">
+                                        @Html.EditorFor(model => model.Login.Password, new { htmlAttributes = new { @class = "form-control bor-radius", placeholder = "Password 會員密碼", @id = "pwd" } })
+                                        <div class="input-group-append ">
+                                            <div class="input-group-text bor-radius" style="width:28px;">
+                                                <span class="fas fa-lock"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="mb-3" align="left">
+                                    @Html.ValidationMessageFor(model => model.Login.Password, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group ">
+                                    <div class="col-md-12 mt-1" align="left">
+                                        @Html.ActionLink("忘記密碼", "Forget", "Account", null, new { @class = "" })&ensp;<span style="color:darkgray;">\</span>&ensp;
+                                        @Html.ActionLink("會員註冊", "Register", "Account", null, new { @class = "" })
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="submit" value="登入" class="btn-login mt-3 py-1" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- TAB2 打包區塊 start -->
+            <input id="tab2" type="radio" name="tab" class="inputhidden" checked />
+            <label for="tab2" align="center" class="tablabel">Register</label>
+            <div class="tab_content">
+                <div class="login-box">
+                    <div class="card">
+                        <div class="card-header" align="center" style="font-size:20px">
+                            註冊完成
+                        </div>
+                        <div class="card-body">
+                            <div style="margin:0 10px;" align="left">
+                                <b>親愛的會員您好：</b><br />
+                                您的註冊已完成，請至您註冊的電子信箱中收信並執行信箱驗證，以完成正式的會員資格。
+                            </div>
+                            <div class="">
+                                <div class="col-md-12 mt-1 px-0">
+                                    @Html.ActionLink("會員登入", "Login", "Account", null, new { @class = "btn btn-login mt-3" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

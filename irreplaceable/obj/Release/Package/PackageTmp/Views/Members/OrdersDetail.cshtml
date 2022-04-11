@@ -1,0 +1,430 @@
+﻿
+
+
+@using PagedList;
+@using PagedList.Mvc;
+
+@model vmMemberCentre
+@{
+    ViewBag.Title = "OrdersDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var GenderCodeList = Model.GetGenderCodeList();
+}
+
+@section title {
+    <title>訂單明細 - @SessionService.CompName</title>
+}
+
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+
+}
+
+<div class="member">
+    <div class="form-screen-nominheight layoutbgmargin">
+        <div class="form-horizontal" style="width:100%;" align="center">
+            <div class="tab_css member-width">
+                <!-- TAB1 打包區塊 start -->
+                <input id="tab1" type="radio" name="tab" class="inputhidden" />
+                <label for="tab1" align="center" class="tablabel">個人資訊</label>
+                <div class="tab_content">
+                    @using (Html.BeginForm("Info", "Members"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="member-box">
+                            <div class="card">
+                                <div class="card-body">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    <div class="row">
+                                        <div class="col-12 text-left">
+                                            @Html.DisplayNameFor(model => model.Members.MemberNo)：
+                                            @Html.DisplayFor(model => model.Members.MemberNo)
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.MemberName, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.MemberName, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.MemberName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.GenderCode, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.DropDownListFor(model => model.Members.GenderCode, GenderCodeList, new { @class = "form-control bor-radius" })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.GenderCode, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.MemberEmail, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.MemberEmail, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.MemberEmail, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.BirthDate, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.BirthDate, new { htmlAttributes = new { @class = "form-control bor-radius datepicker" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.BirthDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.MemberPhone, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.MemberPhone, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.MemberPhone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.MemberZip, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.MemberZip, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.MemberPhone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-10 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.MemberAddress, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.MemberAddress, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.MemberAddress, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group ">
+                                        <div class="col-md-12 mt-1" align="left">
+                                            @Html.ActionLink("變更密碼", "ResetPassword", "Members", null, new { @class = "" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="col-md-12">
+                                            <input type="submit" value="儲存變更" class="btn-login mt-3 py-1" onclick = "return confirm('確定儲存變更?');"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!-- TAB2 打包區塊 start -->
+                <input id="tab2" type="radio" name="tab" class="inputhidden" />
+                <label for="tab2" align="center" class="tablabel">變更密碼</label>
+                <div class="tab_content">
+
+
+                    @using (Html.BeginForm("ResetPassword", "Members"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="member-box">
+                            <div class="card">
+                                <div class="card-body">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                                    <div class="row mt-3">
+                                        <div class="col-lg-offset-3 col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.ResetPassword.OldPassword, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.ResetPassword.OldPassword, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class=" mb-3" style="text-indent:64px">
+                                                @Html.ValidationMessageFor(model => model.ResetPassword.OldPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-offset-3 col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.ResetPassword.NewPassword, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.ResetPassword.NewPassword, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class=" mb-3" style="text-indent:64px">
+                                                @Html.ValidationMessageFor(model => model.ResetPassword.NewPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-offset-3 col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.ResetPassword.ConfirmPassword, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.ResetPassword.ConfirmPassword, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class=" mb-3" style="text-indent:64px">
+                                                @Html.ValidationMessageFor(model => model.ResetPassword.ConfirmPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group ">
+                                        <div class="col-lg-offset-3 col-lg-6">
+                                            <input type="submit" value="變更密碼" class="btn-login mt-3 py-1" onclick = "return confirm('確定變更密碼?  \n 提示：變更密碼若成功，需要重新登入');" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+
+                <!-- TAB3 打包區塊 start -->
+                <input id="tab3" type="radio" name="tab" checked class="inputhidden " />
+                <label for="tab3" align="center" class="tablabel">訂單查詢</label>
+                <div class="tab_content">
+
+                    <div class="row pt-3">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body data-list">
+
+                                    <div class="row pt-1 pt-md-3">
+                                        <div class="col-4 col-md-2">
+                                            <div class="member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.order_no)：
+                                            </div>
+                                            <div class="member_order_detail_data ">
+                                                @Html.DisplayFor(model => model.OrderSingle.order_no)
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.order_date)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.order_date)
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.order_status_name)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.order_status_name)
+                                            </div>
+                                        </div>
+                                        <div class=" col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.user_no)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.user_no)
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.order_user_name)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.order_user_name)
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.order_user_phone)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.order_user_phone)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row pt-1 pt-md-3">
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.receive_name)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.receive_name)
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.receive_phone)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.receive_phone)
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.receive_address)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.receive_address)
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.payment_name)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.payment_name)
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.shipping_name)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.shipping_name)
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.remark)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.remark)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-1 pt-md-3">
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.amounts)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.amounts)
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.taxs)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.taxs)
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-2">
+                                            <div class=" member_order_detail_header">
+                                                @Html.DisplayNameFor(model => model.OrderSingle.totals)：
+                                            </div>
+                                            <div class=" member_order_detail_data">
+                                                @Html.DisplayFor(model => model.OrderSingle.totals)
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row pt-3">
+                                        <div class="col-md-12">
+                                            <table class="table table-bordered table-responsive-sm">
+                                                <tr>
+                                                    <th>
+                                                        商品圖片
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.OrdersDetail.FirstOrDefault().order_no)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.OrdersDetail.FirstOrDefault().product_no)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.OrdersDetail.FirstOrDefault().product_name)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.OrdersDetail.FirstOrDefault().qty)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.OrdersDetail.FirstOrDefault().price)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.OrdersDetail.FirstOrDefault().amount)
+                                                    </th>
+                                                </tr>
+
+                                                @foreach (var item in Model.OrdersDetail)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <img src="@Url.Content(ShopService.GetProductImageUrl(item.product_no))" alt="無封面圖" class="img-fluid" width="100">
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.order_no)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.product_no)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.product_name)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.qty)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.price)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.amount)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                            @Html.ActionLink("返回訂單列表", "Orders", "Members", new { Area = "" }, new { @class = "btn btn-success mt-3 " })
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                                @*<div class="card-footer">
+                        <table>
+                            <tr>
+                                <td class="pr-2">
+                                    <span class="control-label">
+                                        @SessionService.GetPageInfo(0)
+                                    </span>
+                                </td>
+                                <td>@Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", new { page = x }))</td>
+                            </tr>
+                        </table>
+                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

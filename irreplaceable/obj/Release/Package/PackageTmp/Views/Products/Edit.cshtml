@@ -1,0 +1,183 @@
+﻿@model irreplaceable.Models.Products
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+}
+
+
+<div class="row">
+
+    <div class="col-5">
+        <img src="@Url.Content(ShopService.GetProductImageUrl(Model.product_no))" alt="無封面圖" class="img-fluid">
+
+    </div>
+    <div class="col-7">
+        @using (Html.BeginForm("ProductImgUploaded", "Products", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="file" name="file" id="file0" class="btn btn-primary form-control" />
+            <input type="submit" value="上傳檔案" class="btn btn-success form-control" />
+        }
+        @Html.ActionLink("刪除封面圖", "ProductImgDelFile", "Products", new { id = "0" }, new { @class = "btn btn-danger form-control", onclick = "return confirm('是否確定要刪除?');" })
+
+    </div>
+</div>
+<div class="row mt-5 p-1">
+    <div class="col-3">
+        <img src="@Url.Content(ShopService.GetProductImage1Url(Model.product_no))" alt="無照片一" class="img-fluid" />
+        @using (Html.BeginForm("ProductImg1Uploaded", "Products", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="file" name="file1" id="file1" class="btn btn-primary form-control" />
+            <input type="submit" value="上傳檔案" class="btn btn-success form-control" />
+        }
+        @Html.ActionLink("刪除圖一", "ProductImgDelFile", "Products", new { id = "1" }, new { @class = "btn btn-danger form-control", onclick = "return confirm('是否確定要刪除?');" })
+
+
+    </div>
+    <div class="col-3">
+        <img src="@Url.Content(ShopService.GetProductImage2Url(Model.product_no))" alt="無照片二" class="img-fluid" />
+        @using (Html.BeginForm("ProductImg2Uploaded", "Products", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="file" name="file2" id="file2" class="btn btn-primary form-control" />
+            <input type="submit" value="上傳檔案" class="btn btn-success form-control" />
+        }
+        @Html.ActionLink("刪除圖二", "ProductImgDelFile", "Products", new { id = "2" }, new { @class = "btn btn-danger form-control", onclick = "return confirm('是否確定要刪除?');" })
+
+
+    </div>
+    <div class="col-3">
+        <img src="@Url.Content(ShopService.GetProductImage3Url(Model.product_no))" alt="無照片三" class="img-fluid" />
+        @using (Html.BeginForm("ProductImg3Uploaded", "Products", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="file" name="file3" id="file3" class="btn btn-primary form-control" />
+            <input type="submit" value="上傳檔案" class="btn btn-success form-control" />
+        }
+        @Html.ActionLink("刪除圖三", "ProductImgDelFile", "Products", new { id = "3" }, new { @class = "btn btn-danger form-control", onclick = "return confirm('是否確定要刪除?');" })
+
+
+    </div>
+    <div class="col-3">
+        <img src="@Url.Content(ShopService.GetProductImage4Url(Model.product_no))" alt="無照片四" class="img-fluid" />
+        @using (Html.BeginForm("ProductImg4Uploaded", "Products", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="file" name="file4" id="file4" class="btn btn-primary form-control" />
+            <input type="submit" value="上傳檔案" class="btn btn-success form-control" />
+        }
+        @Html.ActionLink("刪除圖四", "ProductImgDelFile", "Products", new { id = "4" }, new { @class = "btn btn-danger form-control", onclick = "return confirm('是否確定要刪除?');" })
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(modelItem => Model.rowid)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.product_no, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="font-size:18px;">
+                @Html.DisplayFor(model => model.product_no, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.product_no, "", new { @class = "text-danger" })
+                @Html.HiddenFor(modelItem => Model.product_no)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.product_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.product_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.category_no, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.category_no, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.category_no, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.content_text, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.content_text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.content_text, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.product_length, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.product_length, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.product_length, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.product_material, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.product_material, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.product_material, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.detail_text, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.detail_text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.detail_text, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.remark, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.remark, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.remark, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="存檔" class="btn btn-primary" />
+                @Html.ActionLink("返回列表", "Index", "Products", new { Area = "" }, new { @class = "btn btn-success" })
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,822 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="web110b_07Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_validate" Type="bit" Nullable="false" />
+          <Property Name="admin_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="admin_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="admin_password" Type="nvarchar" MaxLength="50" />
+          <Property Name="admin_email" Type="nvarchar" MaxLength="250" />
+          <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="BigSales">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sort_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="start_time" Type="datetime" />
+          <Property Name="end_time" Type="datetime" />
+          <Property Name="sale_price" Type="int" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Carts">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lot_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="250" />
+          <Property Name="product_spec" Type="nvarchar" MaxLength="250" />
+          <Property Name="qty" Type="int" />
+          <Property Name="price" Type="int" />
+          <Property Name="amount" Type="int" />
+          <Property Name="crete_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="department_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="department_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_validate" Type="bit" />
+          <Property Name="member_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="member_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="member_password" Type="nvarchar" MaxLength="50" />
+          <Property Name="gender_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="birth_date" Type="datetime" />
+          <Property Name="member_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="member_phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="member_zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="member_address" Type="nvarchar" MaxLength="250" />
+          <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_enabled" Type="bit" Nullable="false" />
+          <Property Name="module_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="module_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="icon_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_date" Type="datetime" />
+          <Property Name="order_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="payment_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="shipping_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_address" Type="nvarchar" MaxLength="250" />
+          <Property Name="amounts" Type="int" />
+          <Property Name="taxs" Type="int" />
+          <Property Name="totals" Type="int" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+          <Property Name="order_guid" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_closed" Type="int" />
+          <Property Name="order_validate" Type="int" />
+        </EntityType>
+        <EntityType Name="OrdersDetail">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="vendor_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="250" />
+          <Property Name="product_spec" Type="nvarchar" MaxLength="250" />
+          <Property Name="price" Type="int" />
+          <Property Name="qty" Type="int" />
+          <Property Name="amount" Type="int" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="status_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pay_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="pay_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="250" />
+          <Property Name="category_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="content_text" Type="nvarchar(max)" />
+          <Property Name="product_length" Type="nvarchar" MaxLength="250" />
+          <Property Name="product_material" Type="nvarchar" MaxLength="250" />
+          <Property Name="detail_text" Type="nvarchar(max)" />
+          <Property Name="sold_qty" Type="int" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProductsCategorys">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_enabled" Type="bit" Nullable="false" />
+          <Property Name="category_parent_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="category_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Programs">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_enabled" Type="bit" Nullable="false" />
+          <Property Name="module_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="program_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="program_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="program_type_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="area_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="controller_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="action_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="parameter_value" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProgramTypes">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="type_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="icon_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Securitys">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="account_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="module_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="program_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="is_add" Type="bit" Nullable="false" />
+          <Property Name="is_edit" Type="bit" Nullable="false" />
+          <Property Name="is_delete" Type="bit" Nullable="false" />
+          <Property Name="is_print" Type="bit" Nullable="false" />
+          <Property Name="is_upload" Type="bit" Nullable="false" />
+          <Property Name="is_download" Type="bit" Nullable="false" />
+          <Property Name="is_confirm" Type="bit" Nullable="false" />
+          <Property Name="is_undo" Type="bit" Nullable="false" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Shippings">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ship_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="ship_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Titles">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="title_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_validate" Type="bit" Nullable="false" />
+          <Property Name="user_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_password" Type="nvarchar" MaxLength="50" />
+          <Property Name="department_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="title_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="in_date" Type="datetime" Nullable="false" />
+          <Property Name="user_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_address" Type="nvarchar" MaxLength="250" />
+          <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityContainer Name="web110b_07ModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BigSales" EntityType="Self.BigSales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdersDetail" EntityType="Self.OrdersDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsCategorys" EntityType="Self.ProductsCategorys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramTypes" EntityType="Self.ProgramTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Securitys" EntityType="Self.Securitys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shippings" EntityType="Self.Shippings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Titles" EntityType="Self.Titles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="web110b_07Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="web110b_07Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="web110b_07Model.Admins" />
+          <EntitySet Name="BigSales" EntityType="web110b_07Model.BigSales" />
+          <EntitySet Name="Carts" EntityType="web110b_07Model.Carts" />
+          <EntitySet Name="OrdersDetail" EntityType="web110b_07Model.OrdersDetail" />
+          <EntitySet Name="Payments" EntityType="web110b_07Model.Payments" />
+          <EntitySet Name="ProductsCategorys" EntityType="web110b_07Model.ProductsCategorys" />
+          <EntitySet Name="Shippings" EntityType="web110b_07Model.Shippings" />
+          <EntitySet Name="Users" EntityType="web110b_07Model.Users" />
+          <EntitySet Name="Departments" EntityType="web110b_07Model.Departments" />
+          <EntitySet Name="Titles" EntityType="web110b_07Model.Titles" />
+          <EntitySet Name="Modules" EntityType="web110b_07Model.Modules" />
+          <EntitySet Name="ProgramTypes" EntityType="web110b_07Model.ProgramTypes" />
+          <EntitySet Name="Securitys" EntityType="web110b_07Model.Securitys" />
+          <EntitySet Name="Members" EntityType="web110b_07Model.Members" />
+          <EntitySet Name="Programs" EntityType="web110b_07Model.Programs" />
+          <EntitySet Name="Orders" EntityType="web110b_07Model.Orders" />
+          <EntitySet Name="OrderStatus" EntityType="web110b_07Model.OrderStatus" />
+          <EntitySet Name="Products" EntityType="web110b_07Model.Products" />
+        </EntityContainer>
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_validate" Type="Boolean" Nullable="false" />
+          <Property Name="admin_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="admin_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="admin_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="admin_email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="validate_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BigSales">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sort_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="start_time" Type="DateTime" Precision="3" />
+          <Property Name="end_time" Type="DateTime" Precision="3" />
+          <Property Name="sale_price" Type="Int32" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Carts">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lot_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="product_spec" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="crete_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrdersDetail">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vendor_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="product_spec" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pay_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pay_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductsCategorys">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="category_parent_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Shippings">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ship_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ship_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_validate" Type="Boolean" Nullable="false" />
+          <Property Name="user_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="department_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="in_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="validate_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="department_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Titles">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="module_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="module_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="icon_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProgramTypes">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="icon_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Securitys">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="module_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="program_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="is_add" Type="Boolean" Nullable="false" />
+          <Property Name="is_edit" Type="Boolean" Nullable="false" />
+          <Property Name="is_delete" Type="Boolean" Nullable="false" />
+          <Property Name="is_print" Type="Boolean" Nullable="false" />
+          <Property Name="is_upload" Type="Boolean" Nullable="false" />
+          <Property Name="is_download" Type="Boolean" Nullable="false" />
+          <Property Name="is_confirm" Type="Boolean" Nullable="false" />
+          <Property Name="is_undo" Type="Boolean" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_validate" Type="Boolean" />
+          <Property Name="member_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="member_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="member_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="birth_date" Type="DateTime" Precision="3" />
+          <Property Name="member_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="member_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="member_zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="member_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="validate_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Programs">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="module_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="program_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="program_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="program_type_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="area_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="controller_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="parameter_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_date" Type="DateTime" Precision="3" />
+          <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="payment_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shipping_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="amounts" Type="Int32" />
+          <Property Name="taxs" Type="Int32" />
+          <Property Name="totals" Type="Int32" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="order_guid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_closed" Type="Int32" />
+          <Property Name="order_validate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="content_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="product_length" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="product_material" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="detail_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sold_qty" Type="Int32" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="web110b_07ModelStoreContainer" CdmEntityContainer="web110b_07Entities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="web110b_07Model.Admins">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+                <ScalarProperty Name="admin_email" ColumnName="admin_email" />
+                <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+                <ScalarProperty Name="admin_name" ColumnName="admin_name" />
+                <ScalarProperty Name="admin_no" ColumnName="admin_no" />
+                <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BigSales">
+            <EntityTypeMapping TypeName="web110b_07Model.BigSales">
+              <MappingFragment StoreEntitySet="BigSales">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
+                <ScalarProperty Name="sort_no" ColumnName="sort_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="web110b_07Model.Carts">
+              <MappingFragment StoreEntitySet="Carts">
+                <ScalarProperty Name="crete_time" ColumnName="crete_time" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="product_spec" ColumnName="product_spec" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
+                <ScalarProperty Name="user_no" ColumnName="user_no" />
+                <ScalarProperty Name="lot_no" ColumnName="lot_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdersDetail">
+            <EntityTypeMapping TypeName="web110b_07Model.OrdersDetail">
+              <MappingFragment StoreEntitySet="OrdersDetail">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="product_spec" ColumnName="product_spec" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="vendor_no" ColumnName="vendor_no" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="web110b_07Model.Payments">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="pay_name" ColumnName="pay_name" />
+                <ScalarProperty Name="pay_no" ColumnName="pay_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsCategorys">
+            <EntityTypeMapping TypeName="web110b_07Model.ProductsCategorys">
+              <MappingFragment StoreEntitySet="ProductsCategorys">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="category_no" ColumnName="category_no" />
+                <ScalarProperty Name="category_parent_no" ColumnName="category_parent_no" />
+                <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shippings">
+            <EntityTypeMapping TypeName="web110b_07Model.Shippings">
+              <MappingFragment StoreEntitySet="Shippings">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="ship_name" ColumnName="ship_name" />
+                <ScalarProperty Name="ship_no" ColumnName="ship_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="web110b_07Model.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+                <ScalarProperty Name="user_address" ColumnName="user_address" />
+                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="in_date" ColumnName="in_date" />
+                <ScalarProperty Name="title_no" ColumnName="title_no" />
+                <ScalarProperty Name="department_no" ColumnName="department_no" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_no" ColumnName="user_no" />
+                <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="web110b_07Model.Departments">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="department_no" ColumnName="department_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titles">
+            <EntityTypeMapping TypeName="web110b_07Model.Titles">
+              <MappingFragment StoreEntitySet="Titles">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="title_name" ColumnName="title_name" />
+                <ScalarProperty Name="title_no" ColumnName="title_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="web110b_07Model.Modules">
+              <MappingFragment StoreEntitySet="Modules">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="icon_name" ColumnName="icon_name" />
+                <ScalarProperty Name="module_name" ColumnName="module_name" />
+                <ScalarProperty Name="module_no" ColumnName="module_no" />
+                <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramTypes">
+            <EntityTypeMapping TypeName="web110b_07Model.ProgramTypes">
+              <MappingFragment StoreEntitySet="ProgramTypes">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="icon_name" ColumnName="icon_name" />
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+                <ScalarProperty Name="type_no" ColumnName="type_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Securitys">
+            <EntityTypeMapping TypeName="web110b_07Model.Securitys">
+              <MappingFragment StoreEntitySet="Securitys">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="is_undo" ColumnName="is_undo" />
+                <ScalarProperty Name="is_confirm" ColumnName="is_confirm" />
+                <ScalarProperty Name="is_download" ColumnName="is_download" />
+                <ScalarProperty Name="is_upload" ColumnName="is_upload" />
+                <ScalarProperty Name="is_print" ColumnName="is_print" />
+                <ScalarProperty Name="is_delete" ColumnName="is_delete" />
+                <ScalarProperty Name="is_edit" ColumnName="is_edit" />
+                <ScalarProperty Name="is_add" ColumnName="is_add" />
+                <ScalarProperty Name="program_no" ColumnName="program_no" />
+                <ScalarProperty Name="module_no" ColumnName="module_no" />
+                <ScalarProperty Name="account_no" ColumnName="account_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="web110b_07Model.Members">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+                <ScalarProperty Name="member_address" ColumnName="member_address" />
+                <ScalarProperty Name="member_zip" ColumnName="member_zip" />
+                <ScalarProperty Name="member_phone" ColumnName="member_phone" />
+                <ScalarProperty Name="member_email" ColumnName="member_email" />
+                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+                <ScalarProperty Name="gender_code" ColumnName="gender_code" />
+                <ScalarProperty Name="member_password" ColumnName="member_password" />
+                <ScalarProperty Name="member_name" ColumnName="member_name" />
+                <ScalarProperty Name="member_no" ColumnName="member_no" />
+                <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="web110b_07Model.Programs">
+              <MappingFragment StoreEntitySet="Programs">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="parameter_value" ColumnName="parameter_value" />
+                <ScalarProperty Name="action_name" ColumnName="action_name" />
+                <ScalarProperty Name="controller_name" ColumnName="controller_name" />
+                <ScalarProperty Name="area_name" ColumnName="area_name" />
+                <ScalarProperty Name="program_type_no" ColumnName="program_type_no" />
+                <ScalarProperty Name="program_name" ColumnName="program_name" />
+                <ScalarProperty Name="program_no" ColumnName="program_no" />
+                <ScalarProperty Name="module_no" ColumnName="module_no" />
+                <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="web110b_07Model.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="order_validate" ColumnName="order_validate" />
+                <ScalarProperty Name="order_closed" ColumnName="order_closed" />
+                <ScalarProperty Name="order_guid" ColumnName="order_guid" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="totals" ColumnName="totals" />
+                <ScalarProperty Name="taxs" ColumnName="taxs" />
+                <ScalarProperty Name="amounts" ColumnName="amounts" />
+                <ScalarProperty Name="receive_address" ColumnName="receive_address" />
+                <ScalarProperty Name="receive_email" ColumnName="receive_email" />
+                <ScalarProperty Name="receive_phone" ColumnName="receive_phone" />
+                <ScalarProperty Name="receive_name" ColumnName="receive_name" />
+                <ScalarProperty Name="shipping_no" ColumnName="shipping_no" />
+                <ScalarProperty Name="payment_no" ColumnName="payment_no" />
+                <ScalarProperty Name="user_no" ColumnName="user_no" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="web110b_07Model.OrderStatus">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="status_name" ColumnName="status_name" />
+                <ScalarProperty Name="status_no" ColumnName="status_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="web110b_07Model.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="sold_qty" ColumnName="sold_qty" />
+                <ScalarProperty Name="detail_text" ColumnName="detail_text" />
+                <ScalarProperty Name="product_material" ColumnName="product_material" />
+                <ScalarProperty Name="product_length" ColumnName="product_length" />
+                <ScalarProperty Name="content_text" ColumnName="content_text" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="category_no" ColumnName="category_no" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

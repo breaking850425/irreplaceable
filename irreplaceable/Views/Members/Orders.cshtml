@@ -1,0 +1,351 @@
+﻿
+
+@using PagedList;
+@using PagedList.Mvc;
+
+@model vmMemberCentre
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var GenderCodeList = Model.GetGenderCodeList();
+}
+
+@section title {
+    <title>訂單查詢 - @SessionService.CompName</title>
+}
+
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+
+}
+
+<div class="member">
+    <div class="form-screen-nominheight layoutbgmargin">
+        <div class="form-horizontal" style="width:100%;" align="center">
+            <div class="tab_css member-width">
+                <!-- TAB1 打包區塊 start -->
+                <input id="tab1" type="radio" name="tab" class="inputhidden" />
+                <label for="tab1" align="center" class="tablabel">個人資訊</label>
+                <div class="tab_content">
+                    @using (Html.BeginForm("Info", "Members"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="member-box">
+                            <div class="card">
+                                <div class="card-body">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    <div class="row">
+                                        <div class="col-12 text-left">
+                                            @Html.DisplayNameFor(model => model.Members.MemberNo)：
+                                            @Html.DisplayFor(model => model.Members.MemberNo)
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.MemberName, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.MemberName, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.MemberName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.GenderCode, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.DropDownListFor(model => model.Members.GenderCode, GenderCodeList, new { @class = "form-control bor-radius" })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.GenderCode, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.MemberEmail, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.MemberEmail, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.MemberEmail, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.BirthDate, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.BirthDate, new { htmlAttributes = new { @class = "form-control bor-radius datepicker" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.BirthDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.MemberPhone, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.MemberPhone, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.MemberPhone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.MemberZip, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.MemberZip, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.MemberPhone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-10 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.Members.MemberAddress, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.Members.MemberAddress, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class="mb-3">
+                                                @Html.ValidationMessageFor(model => model.Members.MemberAddress, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group ">
+                                        <div class="col-md-12 mt-1" align="left">
+                                            @Html.ActionLink("變更密碼", "ResetPassword", "Members", null, new { @class = "" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="col-md-12">
+                                            <input type="submit" value="儲存變更" class="btn-login mt-3 py-1" onclick="return confirm('確定儲存變更?');" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!-- TAB2 打包區塊 start -->
+                <input id="tab2" type="radio" name="tab" class="inputhidden" />
+                <label for="tab2" align="center" class="tablabel">變更密碼</label>
+                <div class="tab_content">
+
+
+                    @using (Html.BeginForm("ResetPassword", "Members"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="member-box">
+                            <div class="card">
+                                <div class="card-body">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                                    <div class="row mt-3">
+                                        <div class="col-lg-offset-3 col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.ResetPassword.OldPassword, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.ResetPassword.OldPassword, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class=" mb-3" style="text-indent:64px">
+                                                @Html.ValidationMessageFor(model => model.ResetPassword.OldPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-offset-3 col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.ResetPassword.NewPassword, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.ResetPassword.NewPassword, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class=" mb-3" style="text-indent:64px">
+                                                @Html.ValidationMessageFor(model => model.ResetPassword.NewPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-offset-3 col-lg-6 text-left">
+                                            <div class="input-group mb-2">
+                                                @Html.LabelFor(model => model.ResetPassword.ConfirmPassword, htmlAttributes: new { @class = "pt-1 pr-3 " })
+                                                @Html.EditorFor(model => model.ResetPassword.ConfirmPassword, new { htmlAttributes = new { @class = "form-control bor-radius" } })
+                                            </div>
+                                            <div class=" mb-3" style="text-indent:64px">
+                                                @Html.ValidationMessageFor(model => model.ResetPassword.ConfirmPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group ">
+                                        <div class="col-lg-offset-3 col-lg-6">
+                                            <input type="submit" value="變更密碼" class="btn-login mt-3 py-1" onclick="return confirm('確定變更密碼?  \n 提示：變更密碼若成功，需要重新登入');" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+
+                <!-- TAB3 打包區塊 start -->
+                <input id="tab3" type="radio" name="tab" checked class="inputhidden" />
+                <label for="tab3" align="center" class="tablabel">訂單查詢</label>
+                <div class="tab_content">
+
+
+
+                    <div class="row pt-3">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body data-list">
+                                    <div class="mb-2">
+                                        <p class="text-right" style="color:red;">＊欲取消訂單請聯繫客服</p>
+                                        @*@using (Html.BeginForm("OrderSearch", "Members", FormMethod.Post))
+                                            {
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="control-label">查詢：</span>
+                                                        </td>
+                                                        <td class="pr-2">
+                                                            <input id="search_text" name="search_text" type="text" class="form-control data-list-search-text" placeholder="請輸入要查詢的內容!!" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="submit" value="查詢" class="btn btn-primary" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            }*@
+                                    </div>
+                                    <table class="table">
+                                        <tr>
+
+                                            <th>
+                                                @*<a href="@Url.Action("ColumnSort" , new { id = "order_no"})">*@
+                                                @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().order_no)
+                                                @*</a>
+                                                    @SessionService.GetColumnSortIcon(0, "order_no")*@
+                                            </th>
+                                            <th>
+                                                @*<a href="@Url.Action("ColumnSort" , new { id = "order_date"})">*@
+                                                @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().order_date)
+                                                @*</a>
+                                                    @SessionService.GetColumnSortIcon(0, "order_date")*@
+                                            </th>
+                                            <th>
+                                                @*<a href="@Url.Action("ColumnSort" , new { id = "order_status"})">*@
+                                                @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().order_status_name)
+                                                @*</a>
+                                                    @SessionService.GetColumnSortIcon(0, "order_status")*@
+                                            </th>
+
+
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().payment_name)
+                                            </th>
+
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().shipping_name)
+                                            </th>
+
+                                            <th>
+                                                @*<a href="@Url.Action("ColumnSort" , new { id = "totals"})">*@
+                                                @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().totals)
+                                                @*</a>
+                                                    @SessionService.GetColumnSortIcon(0, "totals")*@
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Orders.FirstOrDefault().remark)
+
+                                            </th>
+                                            <th>
+                                            </th>
+
+                                        </tr>
+
+                                        @if (Model.Orders.Count() == 0)
+                                        {
+
+                                            <tr>
+                                                <td colspan="8">
+                                                    <h3>查無訂單資料!!</h3>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                        else
+                                        {
+
+
+                                            foreach (var item in Model.Orders)
+                                            {
+                                                using (Html.BeginForm("OrdersDetail", "Members"))
+                                                {
+                                                    <tr>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.order_no)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.order_date)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.order_status_name)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.payment_name)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.shipping_name)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.totals)
+                                                        </td>
+                                                        <td class="data-list-max">
+                                                            @Html.DisplayFor(modelItem => item.remark)
+                                                        </td>
+                                                        <td>
+
+                                                            @Html.ActionLink("查看訂單明細", "OrdersDetail", "Members", new { id = item.order_no }, new { @class = "btn btn-success" })
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            }
+                                        }
+                                    </table>
+
+                                </div>
+                                <!--<div class="card-footer">
+                                <table>
+                                    <tr>-->
+                                @*<td class="pr-2">
+                                        <span class="control-label">
+                                            @SessionService.GetPageInfo(0)
+                                        </span>
+                                    </td>
+                                    <td>@Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", new { page = x }))</td>*@
+                                <!--</tr>
+                                    </table>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

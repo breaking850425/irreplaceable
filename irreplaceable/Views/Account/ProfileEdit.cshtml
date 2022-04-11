@@ -1,0 +1,15 @@
+﻿@model vmAccountProfile
+
+@{
+    ViewBag.Title = "ProfileEdit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{
+    if (SessionService.RoleNo == "Admin")
+    {@Html.Partial(@"~\Views\Account\_Partial_AccountProfile_edit_admin.cshtml")};
+if (SessionService.RoleNo == "User")
+{@Html.Partial(@"~\Views\Account\_Partial_AccountProfile_edit_user.cshtml")};
+if (SessionService.RoleNo == "Member")
+{@Html.Partial(@"~\Views\Account\_Partial_AccountProfile_edit_member.cshtml")};
+}

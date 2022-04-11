@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Forgeted";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title {
+    <title>忘記密碼 - @SessionService.CompName</title>
+}
+
+<div class="form-screen-nominheight layoutbgmargin">
+    <div class="form-horizontal" style="width:100%;" align="center">
+        <div class="tab_css login-width ">
+            <div class="login-box " style="width:100%;">
+                <div class="forgettop" style="width:100%;">忘記密碼 - 重新成功</div>
+                <div class="forget_content">
+
+                    <div class="card card-outline">
+
+                        <div class="card-body">
+                            <div style="margin:0 10px;">
+                                <div align="left">
+                                    <b>親愛的會員您好：</b><br />
+                                    <p>@ViewBag.MessageText</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-12 mt-1 px-0">
+                                    @Html.ActionLink("會員登入", "Login", "Account", null, new { @class = "btn btn-login mt-3" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

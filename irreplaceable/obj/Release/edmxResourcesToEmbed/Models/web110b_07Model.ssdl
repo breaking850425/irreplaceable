@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="web110b_07Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="is_validate" Type="bit" Nullable="false" />
+    <Property Name="admin_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="admin_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="admin_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="admin_email" Type="nvarchar" MaxLength="250" />
+    <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="BigSales">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sort_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="start_time" Type="datetime" />
+    <Property Name="end_time" Type="datetime" />
+    <Property Name="sale_price" Type="int" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Carts">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lot_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_name" Type="nvarchar" MaxLength="250" />
+    <Property Name="product_spec" Type="nvarchar" MaxLength="250" />
+    <Property Name="qty" Type="int" />
+    <Property Name="price" Type="int" />
+    <Property Name="amount" Type="int" />
+    <Property Name="crete_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="department_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="department_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Members">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="is_validate" Type="bit" />
+    <Property Name="member_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="member_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="member_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="gender_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="birth_date" Type="datetime" />
+    <Property Name="member_email" Type="nvarchar" MaxLength="50" />
+    <Property Name="member_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="member_zip" Type="nvarchar" MaxLength="50" />
+    <Property Name="member_address" Type="nvarchar" MaxLength="250" />
+    <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Modules">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="is_enabled" Type="bit" Nullable="false" />
+    <Property Name="module_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="module_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="icon_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_date" Type="datetime" />
+    <Property Name="order_status" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="shipping_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="receive_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="receive_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="receive_email" Type="nvarchar" MaxLength="50" />
+    <Property Name="receive_address" Type="nvarchar" MaxLength="250" />
+    <Property Name="amounts" Type="int" />
+    <Property Name="taxs" Type="int" />
+    <Property Name="totals" Type="int" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+    <Property Name="order_guid" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_closed" Type="int" />
+    <Property Name="order_validate" Type="int" />
+  </EntityType>
+  <EntityType Name="OrdersDetail">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="vendor_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_name" Type="nvarchar" MaxLength="250" />
+    <Property Name="product_spec" Type="nvarchar" MaxLength="250" />
+    <Property Name="price" Type="int" />
+    <Property Name="qty" Type="int" />
+    <Property Name="amount" Type="int" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="OrderStatus">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="status_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="status_name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pay_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="pay_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_name" Type="nvarchar" MaxLength="250" />
+    <Property Name="category_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="content_text" Type="nvarchar(max)" />
+    <Property Name="product_length" Type="nvarchar" MaxLength="250" />
+    <Property Name="product_material" Type="nvarchar" MaxLength="250" />
+    <Property Name="detail_text" Type="nvarchar(max)" />
+    <Property Name="sold_qty" Type="int" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="ProductsCategorys">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="is_enabled" Type="bit" Nullable="false" />
+    <Property Name="category_parent_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Programs">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="is_enabled" Type="bit" Nullable="false" />
+    <Property Name="module_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="program_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="program_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="program_type_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="area_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="controller_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="action_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="parameter_value" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="ProgramTypes">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="type_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="icon_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Securitys">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="account_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="module_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="program_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="is_add" Type="bit" Nullable="false" />
+    <Property Name="is_edit" Type="bit" Nullable="false" />
+    <Property Name="is_delete" Type="bit" Nullable="false" />
+    <Property Name="is_print" Type="bit" Nullable="false" />
+    <Property Name="is_upload" Type="bit" Nullable="false" />
+    <Property Name="is_download" Type="bit" Nullable="false" />
+    <Property Name="is_confirm" Type="bit" Nullable="false" />
+    <Property Name="is_undo" Type="bit" Nullable="false" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Shippings">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ship_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="ship_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Titles">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="title_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="is_validate" Type="bit" Nullable="false" />
+    <Property Name="user_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="department_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="title_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="in_date" Type="datetime" Nullable="false" />
+    <Property Name="user_email" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_address" Type="nvarchar" MaxLength="250" />
+    <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityContainer Name="web110b_07ModelStoreContainer">
+    <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BigSales" EntityType="Self.BigSales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrdersDetail" EntityType="Self.OrdersDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductsCategorys" EntityType="Self.ProductsCategorys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProgramTypes" EntityType="Self.ProgramTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Securitys" EntityType="Self.Securitys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shippings" EntityType="Self.Shippings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Titles" EntityType="Self.Titles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

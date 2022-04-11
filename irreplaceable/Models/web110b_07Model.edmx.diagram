@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6443a93256e44e77913c3a030b4e6da7" Name="Diagram1">
+        <EntityTypeShape EntityType="web110b_07Model.Admins" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="web110b_07Model.BigSales" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="web110b_07Model.Carts" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="web110b_07Model.OrdersDetail" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="web110b_07Model.Payments" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="web110b_07Model.ProductsCategorys" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="web110b_07Model.Shippings" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="web110b_07Model.Users" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web110b_07Model.Departments" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="web110b_07Model.Titles" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="web110b_07Model.Modules" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="web110b_07Model.ProgramTypes" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="web110b_07Model.Securitys" Width="1.5" PointX="11.375" PointY="7.75" />
+        <EntityTypeShape EntityType="web110b_07Model.Members" Width="1.5" PointX="0.5" PointY="4.625" />
+        <EntityTypeShape EntityType="web110b_07Model.Programs" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="web110b_07Model.Orders" Width="1.5" PointX="2.625" PointY="4.625" />
+        <EntityTypeShape EntityType="web110b_07Model.OrderStatus" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="web110b_07Model.Products" Width="1.5" PointX="6.75" PointY="7.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
